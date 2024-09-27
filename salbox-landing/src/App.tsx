@@ -1,5 +1,23 @@
+import { useState } from "react";
+import PlatinumLayout from "./components/Layouts/PlatinumLayout";
+import Hero from "./modules/Hero";
+
 function App() {
-  return <h1 className="text-red-300 font-bold text-5xl">Salbox</h1>;
+  const [phoneNumber, setPhoneNumber] = useState<string | null>(null);
+  const [registered, setRegistered] = useState<boolean>(false);
+
+  const handlePhoneNumber = (e: any) => {
+    const { value } = e.target;
+    setPhoneNumber(value);
+  };
+
+  console.log(phoneNumber);
+
+  return (
+    <PlatinumLayout>
+      <Hero phoneNumber={phoneNumber} handlePhoneNumber={handlePhoneNumber} />
+    </PlatinumLayout>
+  );
 }
 
 export default App;
