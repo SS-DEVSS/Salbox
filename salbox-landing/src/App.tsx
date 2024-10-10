@@ -4,6 +4,7 @@ import AboutUs from "./modules/AboutUs";
 import { Benefits } from "./modules/Benefits";
 import DeliveryTimeline from "./modules/DeliveryTimeline";
 import Hero from "./modules/Hero";
+import QualityWarranty from "./modules/QualityWarranty";
 import { Testimonials } from "./modules/Testomonials";
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
       <Benefits />
       <AboutUs />
       <DeliveryTimeline />
+      <QualityWarranty />
       <Testimonials />
     </PlatinumLayout>
   );

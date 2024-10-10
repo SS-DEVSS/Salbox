@@ -11,7 +11,7 @@ export function Benefits() {
   return (
     <div className="w-full h-full p-8 md:p-20 text-center">
       <h2 className="text-[32px] font-bold">Conoce Los Beneficios </h2>
-      <p className="mt-5 lg:w-1/2 mx-auto leading-8">
+      <p className="mt-5 lg:w-1/2 mx-auto leading-8 mb-10">
         Salbox es un concepto que revoluciona el método tradicional de la comida
         rápida. Esta basado en un modelo de negocios innovador, dentro del cuál
         se combinan los siguientes conceptos:
