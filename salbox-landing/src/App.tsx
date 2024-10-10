@@ -4,6 +4,7 @@ import AboutUs from "./modules/AboutUs";
 import { Benefits } from "./modules/Benefits";
 import DeliveryTimeline from "./modules/DeliveryTimeline";
 import Hero from "./modules/Hero";
+import { Testimonials } from "./modules/Testomonials";
 
 function App() {
   const [phoneNumber, setPhoneNumber] = useState<string | null>(null);
@@ -22,6 +23,7 @@ function App() {
       <Benefits />
       <AboutUs />
       <DeliveryTimeline />
+      <Testimonials />
     </PlatinumLayout>
   );
 }
