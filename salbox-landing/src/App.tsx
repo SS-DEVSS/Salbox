@@ -1,5 +1,6 @@
 import { useState } from "react";
 import PlatinumLayout from "./components/Layouts/PlatinumLayout";
+import AboutUs from "./modules/AboutUs";
 import { Benefits } from "./modules/Benefits";
 import Hero from "./modules/Hero";
 
@@ -18,6 +19,7 @@ function App() {
     <PlatinumLayout>
       <Hero phoneNumber={phoneNumber} handlePhoneNumber={handlePhoneNumber} />
       <Benefits />
+      <AboutUs />
     </PlatinumLayout>
   );
 }
