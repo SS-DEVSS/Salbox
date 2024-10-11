@@ -30,6 +30,7 @@ function App() {
       <Register
         phoneNumber={phoneNumber}
         handlePhoneNumber={handlePhoneNumber}
+        registered={registered}
       />
     </PlatinumLayout>
   );
