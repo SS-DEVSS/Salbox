@@ -2,7 +2,9 @@ import { useState } from "react";
 import PlatinumLayout from "./components/Layouts/PlatinumLayout";
 import AboutUs from "./modules/AboutUs";
 import { Benefits } from "./modules/Benefits";
+import ContactInfo from "./modules/ContactInfo";
 import DeliveryTimeline from "./modules/DeliveryTimeline";
+import FollowSalbox from "./modules/FollowSalbox";
 import Hero from "./modules/Hero";
 import QualityWarranty from "./modules/QualityWarranty";
 import Register from "./modules/Register";
@@ -32,6 +34,8 @@ function App() {
         handlePhoneNumber={handlePhoneNumber}
         registered={registered}
       />
+      <FollowSalbox />
+      <ContactInfo />
     </PlatinumLayout>
   );
 }
