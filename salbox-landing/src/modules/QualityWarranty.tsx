@@ -4,7 +4,7 @@ import WarrantyQualityCheckCard from "../components/WarrantyQualityCheckCard";
 
 const QualityWarranty = () => {
   return (
-    <main className="bg-scarlet-400 p-6 py-9 lg:px-12 xl:p-20">
+    <main className="bg-moonstone-400 p-6 py-9 lg:px-12 xl:p-20">
       <div className="flex flex-col lg:flex-row lg:gap-6 items-stretch md:max-h-[400px]">
         <section className="w-full lg:w-2/3 xl:w-1/2 flex flex-col">
           <h2 className="text-4xl font-bold text-white text-center lg:text-start">

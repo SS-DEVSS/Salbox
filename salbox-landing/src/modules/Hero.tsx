@@ -35,7 +35,7 @@ const Hero = ({ phoneNumber, handlePhoneNumber }: HeroProps) => {
             />
           </div>
           <input
-            className="bg-moonstone-400 text-lg font-semibold rounded-full rounded-l-none border-none px-5 py-3 h-10"
+            className="bg-scarlet-400 text-lg font-semibold rounded-full rounded-l-none border-none px-5 py-3 h-10"
             type="image"
             src="icons/IconSend.png"
             alt="Send Button"

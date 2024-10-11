@@ -5,6 +5,7 @@ import { Benefits } from "./modules/Benefits";
 import DeliveryTimeline from "./modules/DeliveryTimeline";
 import Hero from "./modules/Hero";
 import QualityWarranty from "./modules/QualityWarranty";
+import Register from "./modules/Register";
 import { Testimonials } from "./modules/Testomonials";
 
 function App() {
@@ -26,6 +27,10 @@ function App() {
       <DeliveryTimeline />
       <QualityWarranty />
       <Testimonials />
+      <Register
+        phoneNumber={phoneNumber}
+        handlePhoneNumber={handlePhoneNumber}
+      />
     </PlatinumLayout>
   );
 }
