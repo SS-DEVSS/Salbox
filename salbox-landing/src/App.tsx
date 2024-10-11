@@ -4,6 +4,7 @@ import AboutUs from "./modules/AboutUs";
 import { Benefits } from "./modules/Benefits";
 import ContactInfo from "./modules/ContactInfo";
 import DeliveryTimeline from "./modules/DeliveryTimeline";
+import Faq from "./modules/Faq";
 import FollowSalbox from "./modules/FollowSalbox";
 import Hero from "./modules/Hero";
 import QualityWarranty from "./modules/QualityWarranty";
@@ -36,6 +37,7 @@ function App() {
       />
       <FollowSalbox />
       <ContactInfo />
+      <Faq />
     </PlatinumLayout>
   );
 }
