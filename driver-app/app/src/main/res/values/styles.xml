@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ShapeAppearance.App.SmallComponent" parent="ShapeAppearance.Material3.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">10dp</item>
+    </style>
+
+    <style name="TextAppearance.App.Button" parent="TextAppearance.Material3.LabelLarge">
+        <item name="fontFamily">@Roboto</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Widget.App.Button.borderButton" parent="Widget.Material3.Button.OutlinedButton.Icon">
+        <item name="shapeAppearance">@style/ShapeAppearance.App.SmallComponent</item>
+        <item name="android:textAppearance">@style/TextAppearance.App.Button</item>
+        <item name="strokeColor">@color/blue</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="backgroundTint">@color/blue_100</item>
+        <item name="rippleColor">@null</item>
+        <item name="android:paddingLeft">40sp</item>
+        <item name="android:paddingRight">40sp</item>
+        <item name="android:paddingTop">10sp</item>
+        <item name="android:paddingBottom">10sp</item>
+        <item name="android:textColor">@color/blue</item>
+    </style>
+
+    <style name="Widget.App.Button.borderButton.blue" parent="Widget.App.Button.borderButton">
+        <item name="android:textColor">@color/blue</item>
+    </style>
+
+    <style name="Widget.App.Button.borderButton.red" parent="Widget.App.Button.borderButton">
+        <item name="android:textColor">@color/red</item>
+    </style>
+</resources>

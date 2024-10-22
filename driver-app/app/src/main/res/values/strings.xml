@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Salbox Driver App</string>
+    <string name="share_live_location">Start Sharing Location</string>
+    <string name="stop_share_live_location">Stop</string>
+    <string name="permission_required">Allow access to your location</string>
+    <string name="ok">Ok</string>
+    <string name="error_title">Sorry</string>
+    <string name="error_description">An unexpected error occurred. Please try again.</string>
+    <string name="restart">Restart app</string>
+    <string name="salbox_logo_alt">Salbox Logo</string>
+    <string name="web_client_id">Salbox Logo</string>
+</resources>
