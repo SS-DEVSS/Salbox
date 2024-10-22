@@ -30,4 +30,5 @@
     <string name="invalid_verification_code">Código de verficación incorrecto.</string>
     <string name="sigin_error">Ocurrió un error al iniciar sesión.</string>
     <string name="google_sigin_error">Ocurrió un error al iniciar sesión.</string>
+    <string name="unauthorized">No está autorizado.</string>
 </resources>

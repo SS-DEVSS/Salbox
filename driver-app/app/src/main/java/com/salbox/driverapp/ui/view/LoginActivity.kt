@@ -2,13 +2,12 @@ package com.salbox.driverapp.ui.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -17,10 +16,14 @@ import com.google.android.gms.common.SignInButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.salbox.driverapp.R
+import com.salbox.driverapp.data.repository.UserRepository
 import com.salbox.driverapp.ui.viewmodel.LoginViewModel
+import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var loginViewModel: LoginViewModel
+    val userRepository = UserRepository()
+
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var googleSignInButton: SignInButton
@@ -86,8 +89,18 @@ class LoginActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     val user = FirebaseAuth.getInstance().currentUser
                     if(user != null) {
-                        startActivity(Intent(this, MainActivity::class.java))
-                        finish()
+                        lifecycleScope.launch {
+                            val userEmail = user.email.toString()
+                            val userRole = userRepository.getUserRoleByEmail(userEmail)
+                            if (userRole == "admin") {
+                                startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                                finish()
+                            } else {
+                                FirebaseAuth.getInstance().signOut()
+                                showToast(getString(R.string.unauthorized))
+                            }
+                        }
+
                     } else {
                         showToast(getString(R.string.sigin_error))
                     }
