@@ -25,7 +25,10 @@ android {
         properties.load(keyStoreFile.inputStream())
 
         val googleClientId = properties.getProperty("GOOGLE_CLIENT_ID") ?: ""
+        val accessCode = properties.getProperty("ACCESS_CODE")
+
         buildConfigField("String", "GOOGLE_CLIENT_ID", "\"$googleClientId\"")
+        buildConfigField("String", "ACCESS_C0DE", "\"$accessCode\"")
     }
 
     buildTypes {

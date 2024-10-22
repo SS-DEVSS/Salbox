@@ -17,27 +17,6 @@
         android:layout_centerInParent="true">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/phoneNumberInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/phone_number">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <Button
-            android:id="@+id/sendCodeButton"
-            style="@style/Widget.App.Button.borderButton.blue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/send_verification_code"
-            app:iconTint="@null"/>
-
-        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/verifyCodeInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
