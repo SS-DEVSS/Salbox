@@ -16,26 +16,12 @@
         android:orientation="vertical"
         android:layout_centerInParent="true">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/verifyCodeInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/verification_code">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <Button
-            android:id="@+id/verifyButton"
-            style="@style/Widget.App.Button.borderButton.blue"
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/googleSignInButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/verify_code"
-            app:iconTint="@null"/>
+            android:text="@string/google_sign_in_button_text" />
+
     </LinearLayout>
 
     <ImageView

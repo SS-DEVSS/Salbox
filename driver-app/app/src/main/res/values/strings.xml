@@ -17,6 +17,7 @@
     <string name="ok">Aceptar</string>
     <string name="cancel">Cancelar</string>
     <!-- SING IN -->
+    <string name="google_sign_in_button_text">Iniciar sesión con Google</string>
     <string name="phone_number">Número de teléfono</string>
     <string name="input_phone_number">Por favor introduce un número de teléfono.</string>
     <string name="invalid_phone_number">Número de teléfono inválido.</string>
@@ -28,4 +29,5 @@
     <string name="verification_failed">La verificación falló. Vuele a intentarlo.</string>
     <string name="invalid_verification_code">Código de verficación incorrecto.</string>
     <string name="sigin_error">Ocurrió un error al iniciar sesión.</string>
+    <string name="google_sigin_error">Ocurrió un error al iniciar sesión.</string>
 </resources>
