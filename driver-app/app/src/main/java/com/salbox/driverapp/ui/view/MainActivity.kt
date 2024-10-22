@@ -1,19 +1,25 @@
     package com.salbox.driverapp.ui.view
 
     import android.Manifest
+    import android.content.Intent
+    import android.content.pm.PackageManager
+    import android.os.Build
     import android.os.Bundle
     import android.widget.Button
     import android.widget.Toast
     import androidx.activity.enableEdgeToEdge
     import androidx.activity.viewModels
+    import androidx.annotation.RequiresApi
     import androidx.appcompat.app.AlertDialog
     import androidx.appcompat.app.AppCompatActivity
     import androidx.core.app.ActivityCompat
+    import androidx.core.content.ContextCompat
     import androidx.core.view.ViewCompat
     import androidx.core.view.WindowInsetsCompat
     import androidx.lifecycle.Observer
     import androidx.lifecycle.ViewModelProvider
     import com.salbox.driverapp.R
+    import com.salbox.driverapp.data.services.LocationService
     import com.salbox.driverapp.ui.viewmodel.LoginViewModel
     import com.salbox.driverapp.ui.viewmodel.MainViewModel
     import com.salbox.driverapp.ui.viewmodel.PermissionState
@@ -32,6 +38,7 @@
          * onCreate is called when the activity is first created.
          * Initializes the UI components and sets up observers and click listeners.
          */
+        @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
 
@@ -47,13 +54,6 @@
 
             // Initialize Login ViewModel
             loginViewModel = ViewModelProvider(this)[LoginViewModel::class.java]
-
-            // Observe the user LiveData
-            loginViewModel.user.observe(this) { account ->
-                if (account != null) {
-                    // Use account.displayName and account.email as needed
-                }
-            }
         }
 
         /**
@@ -70,6 +70,7 @@
         /**
          * Sets up LiveData observers for the ViewModel's permission state and location updates.
          */
+        @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
         private fun setupObservers() {
             // Observing changes in permission state
             mainViewModel.permissionState.observe(this, Observer { state ->
@@ -77,7 +78,7 @@
                     is PermissionState.ShowForegroundRationale -> showForegroundPermissionRationale()
                     is PermissionState.RequestForegroundPermissions -> requestForegroundPermissions()
                     is PermissionState.RequestBackgroundPermission -> showBackgroundPermissionRationale()
-                    is PermissionState.AllPermissionsGranted -> startLocationSharing()
+                    is PermissionState.AllPermissionsGranted -> startLocationService()
                     is PermissionState.ShowToast -> showToast(state.message)
                 }
             })
@@ -140,6 +141,18 @@
         }
 
         /**
+         * Requests foreground location service permission from the user.
+         */
+        @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
+        private fun requestForegroundServiceLocationPermission() {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(FOREGROUND_SERVICE_LOCATION),
+                FOREGROUND_SERVICE_LOCATION_PERMISSION_CODE
+            )
+        }
+
+        /**
          * Requests background location permission from the user (only required for Android 10 and above).
          */
         private fun requestBackgroundPermission() {
@@ -173,20 +186,38 @@
         /**
          * Starts the location sharing process by invoking the ViewModel to start location updates.
          */
-        private fun startLocationSharing() {
-            showToast(getString(R.string.starting_live_location))
-            mainViewModel.startLocationUpdates()
+        @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
+        private fun startLocationService() {
+            // Ensure the foreground service location permission is granted
+            if (ContextCompat.checkSelfPermission(
+                    this,
+                    PERMISSION_FINE_LOCATION
+                ) == PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(
+                    this,
+                    FOREGROUND_SERVICE_LOCATION
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
+                val serviceIntent = Intent(this, LocationService::class.java)
+                ContextCompat.startForegroundService(this, serviceIntent)
+            } else {
+                // If foreground service location permission is not granted, request it
+                requestForegroundServiceLocationPermission()
+            }
         }
+
 
         // Companion object for storing permission-related constants
         companion object {
             const val PERMISSION_BACKGROUND_LOCATION = Manifest.permission.ACCESS_BACKGROUND_LOCATION
             private const val PERMISSION_COARSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION
             private const val PERMISSION_FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION
+            @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
+            private const val FOREGROUND_SERVICE_LOCATION = Manifest.permission.FOREGROUND_SERVICE_LOCATION
             const val LOCATION_PERMISSION_CODE = 1902
             const val BACKGROUND_LOCATION_PERMISSION_CODE = 1903
+            const val FOREGROUND_SERVICE_LOCATION_PERMISSION_CODE = 1903
 
-            // Array of foreground location permissions
             val FOREGROUND_LOCATION_PERMISSIONS = arrayOf(
                 PERMISSION_FINE_LOCATION,
                 PERMISSION_COARSE_LOCATION

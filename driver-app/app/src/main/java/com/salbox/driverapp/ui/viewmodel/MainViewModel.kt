@@ -101,16 +101,14 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
      */
     fun checkAndRequestPermissions() {
         when {
-            // If all permissions are granted, notify via LiveData
             hasAllPermissions() -> {
                 _permissionState.value = PermissionState.AllPermissionsGranted
             }
-            // If foreground permissions are granted but background is not, request background permission
             hasForegroundLocationPermissions() && !hasBackgroundLocationPermission() -> {
                 _permissionState.value = PermissionState.RequestBackgroundPermission
             }
-            // Otherwise, request foreground permissions
             else -> {
+                // Ask for foreground location permissions
                 _permissionState.value = PermissionState.RequestForegroundPermissions
             }
         }
@@ -123,29 +121,23 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
      */
     fun handlePermissionResult(requestCode: Int, grantResults: IntArray) {
         when (requestCode) {
-            // Check the result for foreground location permissions
             LOCATION_PERMISSION_CODE -> {
                 if (grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }) {
-                    _permissionState.value = PermissionState.RequestBackgroundPermission
+                    // Foreground permission granted
+                    checkAndRequestPermissions() // Re-check for background permission
                 } else {
-                    _permissionState.value = PermissionState.ShowToast(
-                        "Location permissions are required to share your location"
-                    )
+                    _permissionState.value = PermissionState.ShowToast("Location permissions are required to share your location")
                 }
             }
-            // Check the result for background location permissions
             BACKGROUND_LOCATION_PERMISSION_CODE -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     _permissionState.value = PermissionState.AllPermissionsGranted
                 } else {
-                    _permissionState.value = PermissionState.ShowToast(
-                        "Background location permission is required for continuous location sharing"
-                    )
+                    _permissionState.value = PermissionState.ShowToast("Background location permission is needed for this feature")
                 }
             }
         }
     }
-
     /**
      * Checks if the app has foreground location permissions.
      * @return True if foreground location permissions are granted, false otherwise.
