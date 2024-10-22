@@ -1,6 +1,26 @@
+import {
+  APIProvider,
+  Map,
+  AdvancedMarker,
+  Pin,
+} from "@vis.gl/react-google-maps";
+import { PoiMarkers } from "../components/PoiMarkers";
+
 const FollowSalbox = () => {
+  const pos = {
+    key: "Salbox",
+    location: { lat: 20.606959617438918, lng: -100.38787695165183 },
+  };
+
+  const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+
+  if (!apiKey) {
+    console.error("Google Maps API key is missing!");
+    return <p>Error: Google Maps API key is not defined.</p>;
+  }
+
   return (
-    <section>
+    <section className="pt-6">
       <h2 className="text-center text-[28px] md:text-[40px] font-bold px-6">
         Sigue a Salbox
       </h2>
@@ -9,7 +29,38 @@ const FollowSalbox = () => {
         real de nuestro vehículo de entregas para saber cuándo llegará tu pedido
         instantáneo a tu puerta.
       </p>
-      <div className="mx-auto w-[90%] h-[700px] bg-slate-300"></div>
+      <div className="mx-auto w-[90%] lg:w-[80%] h-[300px] lg:h-[75vh] mb-8 lg:mb-0 bg-slate-300 rounded-xl">
+        <APIProvider
+          apiKey={apiKey}
+          onLoad={() => console.log("Maps API has loaded.")}
+        >
+          <Map
+            mapId="b02d85ede98fd2bc"
+            style={{
+              width: "100%",
+              height: "100%",
+              borderRadius: "20px",
+            }}
+            defaultCenter={{
+              lat: 20.606959617438918,
+              lng: -100.38787695165183,
+            }}
+            defaultZoom={14}
+            gestureHandling={"greedy"}
+            disableDefaultUI={true}
+          >
+            <PoiMarkers pos={pos} />
+          </Map>
+
+          <AdvancedMarker key={pos.key} position={pos.location}>
+            <Pin
+              background={"#FBBC04"}
+              glyphColor={"#000"}
+              borderColor={"#000"}
+            />
+          </AdvancedMarker>
+        </APIProvider>
+      </div>
     </section>
   );
 };
