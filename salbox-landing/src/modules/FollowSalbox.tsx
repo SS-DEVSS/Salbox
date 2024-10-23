@@ -20,7 +20,7 @@ const FollowSalbox = () => {
   }
 
   return (
-    <section className="pt-6">
+    <section className="pt-6 md:py-14 md:pb-10">
       <h2 className="text-center text-[28px] md:text-[40px] font-bold px-6">
         Sigue a Salbox
       </h2>

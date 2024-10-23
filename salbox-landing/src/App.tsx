@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Banners from "./components/Banners";
 import PlatinumLayout from "./components/Layouts/PlatinumLayout";
 import AboutUs from "./modules/AboutUs";
 import { Benefits } from "./modules/Benefits";
@@ -7,6 +8,7 @@ import DeliveryTimeline from "./modules/DeliveryTimeline";
 import Faq from "./modules/Faq";
 import FollowSalbox from "./modules/FollowSalbox";
 import Hero from "./modules/Hero";
+import Menu from "./modules/Menu";
 import QualityWarranty from "./modules/QualityWarranty";
 import Register from "./modules/Register";
 import { Testimonials } from "./modules/Testomonials";
@@ -27,6 +29,7 @@ function App() {
       <Hero phoneNumber={phoneNumber} handlePhoneNumber={handlePhoneNumber} />
       <Benefits />
       <AboutUs />
+      {/* <Banners /> */}
       <DeliveryTimeline />
       <QualityWarranty />
       <Testimonials />
@@ -35,6 +38,7 @@ function App() {
         handlePhoneNumber={handlePhoneNumber}
         registered={registered}
       />
+      <Menu />
       <FollowSalbox />
       <ContactInfo />
       <Faq />
