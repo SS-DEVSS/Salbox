@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Banners from "./components/Banners";
 import PlatinumLayout from "./components/Layouts/PlatinumLayout";
 import AboutUs from "./modules/AboutUs";
 import { Benefits } from "./modules/Benefits";
@@ -29,7 +28,6 @@ function App() {
       <Hero phoneNumber={phoneNumber} handlePhoneNumber={handlePhoneNumber} />
       <Benefits />
       <AboutUs />
-      {/* <Banners /> */}
       <DeliveryTimeline />
       <QualityWarranty />
       <Testimonials />
