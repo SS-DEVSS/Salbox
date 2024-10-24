@@ -41,8 +41,8 @@ const AboutUs = () => {
           alt="salbox about us"
         />
       </main>
-      <div className="mb-32">
-        <Banners />
+      <div className="mb-20 lg:mb-32">
+        <Banners text={"Nuestros Combos"} />
       </div>
     </div>
   );

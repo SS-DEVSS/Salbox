@@ -72,7 +72,7 @@ const Menu = () => {
       </section>
 
       {/* Scrollable Menu Items Section */}
-      <section className="menu-items-container overflow-y-auto flex-1 bg-white_smoke">
+      <section className="menu-items-container sticky bottom-0 overflow-y-auto flex-1 bg-white_smoke pb-10">
         {foodMenuData.map((category, index) => (
           <div
             ref={(el) => (sectionsRefs.current[index] = el)}
