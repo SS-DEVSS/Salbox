@@ -62,13 +62,13 @@ export const columns = [
     cell: ({ row }: { row: any }) => {
       const { title, description } = row.original;
       return (
-        <div className="flex items-center text-left">
+        <div className="flex items-center min-w-[200px] text-left">
           {/* <div className="mr-4">
             <ChevronDown />
           </div> */}
           <div>
             <div className="font-semibold">{title}</div>
-            {/* <div className="text-sm text-gray-500 mt-1">{description}</div> */}
+            <div className="text-sm text-gray-500 mt-1">{description}</div>
           </div>
         </div>
       );
@@ -143,7 +143,7 @@ export default function MobileData() {
         <Table>
           <TableHeader className="bg-scarlet-100">
             <tr className="text-center">
-              <th className="py-4 px-8 text-left" colSpan={1}></th>
+              <th className="py-4 px-8 text-left"></th>
               <th className="py-4 px-8 bg-moonstone-400 text-white">Salbox</th>
               <th className="py-4 px-8">Competencia 1</th>
               <th className="py-4 px-8">Competencia 2</th>
