@@ -1,42 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="ShapeAppearance.App.SmallComponent" parent="ShapeAppearance.Material3.SmallComponent">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">10dp</item>
+    <!--BUTTONS-->
+    <style name="Theme.SalboxDriverApp.Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_marginBottom">30dp</item>
+        <item name="android:paddingTop">12sp</item>
+        <item name="android:paddingBottom">12sp</item>
     </style>
 
-    <style name="TextAppearance.App.Button" parent="TextAppearance.Material3.LabelLarge">
-        <item name="fontFamily">@Roboto</item>
-        <item name="android:textSize">18sp</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-
-    <style name="Widget.App.Button.borderButton" parent="Widget.Material3.Button.OutlinedButton.Icon">
-        <item name="shapeAppearance">@style/ShapeAppearance.App.SmallComponent</item>
-        <item name="android:textAppearance">@style/TextAppearance.App.Button</item>
-        <item name="strokeWidth">1dp</item>
-        <item name="rippleColor">@null</item>
-        <item name="android:paddingLeft">40sp</item>
-        <item name="android:paddingRight">40sp</item>
-        <item name="android:paddingTop">10sp</item>
-        <item name="android:paddingBottom">10sp</item>
-    </style>
-
-    <style name="Widget.App.Button.borderButton.blue" parent="Widget.App.Button.borderButton">
+    <style name="Theme.SalboxDriverApp.Button.blue" parent="Theme.SalboxDriverApp.Button">
+        <item name="android:backgroundTint">@color/blue_100</item>
         <item name="android:textColor">@color/blue</item>
-        <item name="backgroundTint">@color/blue_100</item>
-        <item name="strokeColor">@color/blue</item>
+        <item name="iconTint">@color/blue</item>
     </style>
 
-    <style name="Widget.App.Button.borderButton.red" parent="Widget.App.Button.borderButton">
-        <item name="android:textColor">@color/red</item>
-        <item name="backgroundTint">@color/red_100</item>
-        <item name="strokeColor">@color/red</item>
-    </style>
-
-    <style name="Widget.App.Button.borderButton.white" parent="Widget.App.Button.borderButton">
+    <style name="Theme.SalboxDriverApp.Button.gray" parent="Theme.SalboxDriverApp.Button">
+        <item name="android:backgroundTint">@color/gray_500</item>
         <item name="android:textColor">@color/black</item>
-        <item name="backgroundTint">@color/gray_100</item>
-        <item name="strokeColor">@color/gray</item>
+        <item name="iconTint">@color/black</item>
     </style>
+
+    <!--CHIPS-->
+    <style name="Theme.SalboxDriverApp.ChipGroup" parent="Widget.Material3.ChipGroup">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_marginStart">20dp</item>
+    </style>
+
+    <style name="Theme.SalboxDriverApp.ChipStatus" parent="Widget.Material3.Chip.Suggestion">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">55dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="chipStartPadding">40dp</item>
+        <item name="chipEndPadding">40dp</item>
+        <item name="chipCornerRadius">20sp</item>
+    </style>
+
+    <style name="Theme.SalboxDriverApp.ChipStatus.blue" parent="Theme.SalboxDriverApp.ChipStatus">
+        <item name="android:backgroundTint">@color/blue_100</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="chipStrokeColor">@color/blue</item>
+    </style>
+
+    <style name="Theme.SalboxDriverApp.ChipStatus.red" parent="Theme.SalboxDriverApp.ChipStatus">
+        <item name="android:backgroundTint">@color/red_100</item>
+        <item name="android:textColor">@color/red</item>
+        <item name="chipStrokeColor">@color/red</item>
+    </style>
+
+
 </resources>
