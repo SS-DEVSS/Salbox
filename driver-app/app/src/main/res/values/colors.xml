@@ -8,5 +8,6 @@
     <color name="red_100">#F4D1CC</color>
     <color name="gray">#B3B3B3</color>
     <color name="gray_100">#F2F2F2</color>
+    <color name="gray_500">#DCDCDC</color>
     <color name="gray_900">#626262</color>
 </resources>

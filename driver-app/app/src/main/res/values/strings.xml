@@ -31,4 +31,6 @@
     <string name="sigin_error">Ocurrió un error al iniciar sesión.</string>
     <string name="google_sigin_error">Ocurrió un error al iniciar sesión.</string>
     <string name="unauthorized">No está autorizado.</string>
+    <string name="live_location_text">La ubicación en tiempo real está</string>
+    <string name="active">Activa</string>
 </resources>
