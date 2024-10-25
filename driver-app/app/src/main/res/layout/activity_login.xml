@@ -16,11 +16,20 @@
         android:orientation="vertical"
         android:layout_centerInParent="true">
 
-        <com.google.android.gms.common.SignInButton
+        <Button
             android:id="@+id/googleSignInButton"
-            android:layout_width="wrap_content"
+            style="@style/Widget.Material3.Button.IconButton.Outlined"
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
-            android:text="@string/google_sign_in_button_text" />
+            app:icon="@drawable/googleg_standard_color_18"
+            app:iconTint="@null"
+            android:text="@string/google_sign_in_button_text"
+            android:textColor="@color/gray_900"
+            android:textStyle="normal"
+            android:padding="16dp"
+            android:textSize="16sp"
+            android:gravity="center" />
+
 
     </LinearLayout>
 
