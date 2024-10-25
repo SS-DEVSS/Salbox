@@ -1,3 +1,5 @@
+import { DataTable } from "../components/DataTable";
+
 const TableComparison = () => {
   return (
     <main className="bg-scarlet-400 mt-32 py-20 text-white text-center">
@@ -12,6 +14,7 @@ const TableComparison = () => {
         para disfrutar en el menor tiempo posible. Descubre cómo preparamos tu
         platillo con precisión y cuidado.
       </p>
+      <DataTable />
     </main>
   );
 };
