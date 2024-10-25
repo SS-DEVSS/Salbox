@@ -78,7 +78,6 @@ class LoginActivity : AppCompatActivity() {
 
             googleSignInClient = GoogleSignIn.getClient(this, gso)
 
-            // Verify configuration
             Log.d(TAG, "Package name: ${applicationContext.packageName}")
             Log.d(TAG, "Google Web Client ID: $googleWebClientId")
         } catch (e: Exception) {
@@ -110,7 +109,6 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    // Launcher for handling Google Sign-In result
     private val googleSignInLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->

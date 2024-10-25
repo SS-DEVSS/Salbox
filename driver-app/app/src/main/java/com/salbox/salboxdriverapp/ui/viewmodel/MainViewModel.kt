@@ -34,6 +34,11 @@ sealed class PermissionState {
     data class ShowToast(val message: String) : PermissionState()  // Show toast with message
 }
 
+sealed class LiveLocationButtonState {
+    data object STOP : LiveLocationButtonState()
+    data object SHARE : LiveLocationButtonState()
+}
+
 /**
  * ViewModel for handling location updates and permissions in an Android application.
  * Manages the location data, permissions, and interactions with the LocationRepository.
@@ -41,6 +46,9 @@ sealed class PermissionState {
 class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val _permissionState = MutableLiveData<PermissionState>()
     val permissionState: LiveData<PermissionState> = _permissionState
+
+    private val _liveLocationButtonState = MutableLiveData<LiveLocationButtonState>()
+    val liveLocationButtonState: LiveData<LiveLocationButtonState> = _liveLocationButtonState
 
     /**
      * Checks if the necessary permissions are granted and sets the appropriate permission state.
@@ -82,6 +90,11 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
     }
+
+    fun setLiveLocationButtonState(state: LiveLocationButtonState) {
+        _liveLocationButtonState.value = state
+    }
+
     /**
      * Checks if the app has foreground location permissions.
      * @return True if foreground location permissions are granted, false otherwise.

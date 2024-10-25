@@ -5,6 +5,8 @@
     import android.content.pm.PackageManager
     import android.os.Build
     import android.os.Bundle
+    import android.util.Log
+    import android.view.View
     import android.widget.Button
     import android.widget.Toast
     import androidx.activity.enableEdgeToEdge
@@ -17,19 +19,27 @@
     import androidx.core.view.ViewCompat
     import androidx.core.view.WindowInsetsCompat
     import androidx.lifecycle.Observer
+    import com.google.android.material.chip.ChipGroup
     import com.salbox.salboxdriverapp.R
     import com.salbox.salboxdriverapp.data.services.LocationService
+    import com.salbox.salboxdriverapp.databinding.ActivityMainBinding
+    import com.salbox.salboxdriverapp.ui.viewmodel.LiveLocationButtonState
     import com.salbox.salboxdriverapp.ui.viewmodel.MainViewModel
     import com.salbox.salboxdriverapp.ui.viewmodel.PermissionState
 
-    /**
+     /**
      * MainActivity is the entry point of the app.
      * Handles permission requests and location sharing functionality.
      */
     class MainActivity : AppCompatActivity() {
-        // ViewModel instance to interact with the business logic and UI data
+        private lateinit var binding: ActivityMainBinding
         private val mainViewModel: MainViewModel by viewModels()
 
+        private lateinit var shareLiveLocationButton: Button
+        private lateinit var stopLiveLocationButton: Button
+
+        private lateinit var activeLocationStatusChip: ChipGroup
+        private lateinit var inactiveLocationStatusChip: ChipGroup
 
         /**
          * onCreate is called when the activity is first created.
@@ -38,16 +48,31 @@
         @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
+            binding = ActivityMainBinding.inflate(layoutInflater)
 
-            enableEdgeToEdge() // Enables edge-to-edge display
-            setContentView(R.layout.activity_main)
+            enableEdgeToEdge()
+            setContentView(binding.root)
 
-            setupWindowInsets() // Adjusts the UI layout based on system window insets
-            setupObservers() // Observes ViewModel state and handles permission logic
-            setupClickListeners() // Set click listeners for buttons
+            setupWindowInsets()
 
-            // Check for permissions when the activity starts
+            shareLiveLocationButton = findViewById(R.id.share_live_location_button)
+            stopLiveLocationButton = findViewById(R.id.stop_live_location_button)
+            activeLocationStatusChip = findViewById(R.id.active_location_status_chip)
+            inactiveLocationStatusChip = findViewById(R.id.inactive_location_status_chip)
+
+
+            setupObservers()
+            setupClickListeners()
+
             mainViewModel.checkAndRequestPermissions()
+
+            mainViewModel.setLiveLocationButtonState(LiveLocationButtonState.STOP)
+            /*mainViewModel.liveLocationButtonState.observe(this, Observer { state ->
+                when(state) {
+                    LiveLocationButtonState.STOP -> binding.shareLiveLocationButton.text = getString(R.string.stop_share_live_location)
+                    LiveLocationButtonState.SHARE -> binding.shareLiveLocationButton.text = getString(R.string.share_live_location)
+                }
+            })*/
         }
 
         /**
@@ -66,7 +91,6 @@
          */
         @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
         private fun setupObservers() {
-            // Observing changes in permission state
             mainViewModel.permissionState.observe(this, Observer { state ->
                 when (state) {
                     is PermissionState.ShowForegroundRationale -> showForegroundPermissionRationale()
@@ -82,8 +106,29 @@
          * Sets up click listeners for UI components, e.g., buttons.
          */
         private fun setupClickListeners() {
-            findViewById<Button>(R.id.share_live_location_button).setOnClickListener {
-                mainViewModel.checkAndRequestPermissions() // Re-check permissions when button is clicked
+            shareLiveLocationButton.setOnClickListener {
+                toggleButtons(true)
+
+                when (mainViewModel.liveLocationButtonState.value) {
+                    LiveLocationButtonState.STOP -> {
+                        Log.d("LIVE", mainViewModel.liveLocationButtonState.value.toString())
+                        mainViewModel.setLiveLocationButtonState(LiveLocationButtonState.SHARE)
+                    }
+                    LiveLocationButtonState.SHARE -> {
+                        Log.d("LIVE", mainViewModel.liveLocationButtonState.value.toString())
+                        mainViewModel.setLiveLocationButtonState(LiveLocationButtonState.STOP)
+                    }
+                    null -> {
+                        // Puedes mostrar un mensaje o simplemente salir de la función
+                        Log.d("LIVE", "Estado del botón es nulo.")
+                        // O puedes establecer un estado por defecto aquí, si es necesario
+                    }
+                }
+                mainViewModel.checkAndRequestPermissions()
+            }
+
+            stopLiveLocationButton.setOnClickListener {
+                toggleButtons(false)
             }
         }
 
@@ -192,6 +237,22 @@
             }
         }
 
+         private fun toggleButtons(isSharing: Boolean) {
+             if(!isSharing) {
+                 shareLiveLocationButton.visibility = View.VISIBLE
+                 inactiveLocationStatusChip.visibility = View.VISIBLE
+
+                 stopLiveLocationButton.visibility = View.INVISIBLE
+                 activeLocationStatusChip.visibility = View.INVISIBLE
+             } else {
+                 shareLiveLocationButton.visibility = View.INVISIBLE
+                 inactiveLocationStatusChip.visibility = View.INVISIBLE
+
+                 stopLiveLocationButton.visibility = View.VISIBLE
+                 activeLocationStatusChip.visibility = View.VISIBLE
+             }
+         }
+
         /**
          * Displays a Toast message to the user.
          * @param message The message to display
@@ -201,7 +262,6 @@
         }
 
 
-        // Companion object for storing permission-related constants
         companion object {
             const val PERMISSION_BACKGROUND_LOCATION = Manifest.permission.ACCESS_BACKGROUND_LOCATION
             private const val PERMISSION_COARSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION

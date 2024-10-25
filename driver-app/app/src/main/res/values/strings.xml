@@ -1,8 +1,8 @@
 <resources>
     <!--LIVE LOCATION-->
     <string name="app_name">Salbox Driver App</string>
-    <string name="share_live_location">Compartir Ubicación</string>
-    <string name="stop_share_live_location">Dejar de Compartir</string>
+    <string name="share_live_location">Comenzar a compartir</string>
+    <string name="stop_share_live_location">Dejar de compartir</string>
     <string name="starting_live_location">Compartiendo ubicación...</string>
     <string name="permission_required">Permitir acceso a la ubicación en tiempo real.</string>
     <string name="error_title">Lo sentimos</string>
@@ -33,6 +33,7 @@
     <string name="unauthorized">No está autorizado.</string>
     <string name="live_location_text">La ubicación en tiempo real está</string>
     <string name="active">Activa</string>
+    <string name="inactive">Inactiva</string>
     <!--WEB CLIENT ID-->
     <string name="default_web_client_id" translatable="false">295957282171-h871mbts5b76220hn82pi9hfgdlkdlqc.apps.googleusercontent.com</string>
 </resources>

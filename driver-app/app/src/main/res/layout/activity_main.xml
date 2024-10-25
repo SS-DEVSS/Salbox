@@ -9,6 +9,7 @@
     android:padding="20dp"
     tools:context=".ui.view.MainActivity">
 
+    <!--TEXT VIEW-->
     <TextView
         android:id="@+id/live_location_text"
         android:layout_width="0dp"
@@ -21,14 +22,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
+    <!--STATUS CHIPS-->
     <com.google.android.material.chip.ChipGroup
-        android:id="@+id/location_status_chip"
+        android:id="@+id/active_location_status_chip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginStart="20dp"
         app:layout_constraintTop_toBottomOf="@id/live_location_text"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="visible">
 
         <com.google.android.material.chip.Chip
             style="@style/Widget.Material3.Chip.Suggestion"
@@ -46,8 +49,54 @@
             />
     </com.google.android.material.chip.ChipGroup>
 
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/inactive_location_status_chip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintTop_toBottomOf="@id/live_location_text"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="invisible">
+
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.Material3.Chip.Suggestion"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:backgroundTint="@color/red_100"
+            android:textColor="@color/red"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            android:text="@string/inactive"
+            app:chipStrokeColor="@color/red"
+            app:chipStartPadding="40sp"
+            app:chipEndPadding="40sp"
+            app:chipCornerRadius="20sp"
+            />
+    </com.google.android.material.chip.ChipGroup>
+
+
+    <!--LOCATION BUTTONS-->
     <Button
         android:id="@+id/share_live_location_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/share_live_location"
+        android:textSize="16sp"
+        app:icon="@drawable/baseline_check_circle_24"
+        android:backgroundTint="@color/blue_100"
+        android:textColor="@color/blue"
+        android:layout_marginBottom="30dp"
+        android:paddingTop="12sp"
+        android:paddingBottom="12sp"
+        app:iconTint="@color/blue"
+        app:layout_constraintBottom_toTopOf="@id/salbox_logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/stop_live_location_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/stop_share_live_location"
@@ -61,8 +110,10 @@
         app:iconTint="@color/black"
         app:layout_constraintBottom_toTopOf="@id/salbox_logo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="visible"/>
 
+    <!--LOGO-->
     <ImageView
         android:id="@+id/salbox_logo"
         android:layout_width="100dp"
