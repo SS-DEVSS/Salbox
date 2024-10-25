@@ -1,4 +1,5 @@
 import { DataTable } from "../components/DataTable";
+import { DataTableValues } from "../components/DataTableValues";
 
 const TableComparison = () => {
   return (
@@ -14,7 +15,10 @@ const TableComparison = () => {
         para disfrutar en el menor tiempo posible. Descubre cómo preparamos tu
         platillo con precisión y cuidado.
       </p>
-      <DataTable />
+      <div className="flex max-w-[1400px] px-10 mx-auto">
+        <DataTable />
+        <DataTableValues />
+      </div>
     </main>
   );
 };
