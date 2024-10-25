@@ -78,7 +78,7 @@ const Hero = ({ phoneNumber, handlePhoneNumber }: HeroProps) => {
           />
         </div>
       </section>
-      <div className="hidden lg:block basis-1/2">
+      <div className="hidden lg:block mx-auto basis-1/2">
         <img
           //   className="h-[700px]"
           src="illustrations/HeroIllustration.svg"

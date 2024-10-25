@@ -2,6 +2,7 @@ import { useState } from "react";
 import PlatinumLayout from "./components/Layouts/PlatinumLayout";
 import Promotions from "./components/Promotions";
 import AboutUs from "./modules/AboutUs";
+import { AppPromotion } from "./modules/AppPromotion";
 import { Benefits } from "./modules/Benefits";
 import ContactInfo from "./modules/ContactInfo";
 import DeliveryTimeline from "./modules/DeliveryTimeline";
@@ -34,6 +35,7 @@ function App() {
       <TableComparison />
       <DeliveryTimeline />
       <QualityWarranty />
+      <AppPromotion />
       <Testimonials />
       <Register
         phoneNumber={phoneNumber}
