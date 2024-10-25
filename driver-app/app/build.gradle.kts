@@ -3,7 +3,6 @@ import java.util.Properties
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-
     id("com.google.gms.google-services")
 }
 
@@ -25,10 +24,8 @@ android {
         properties.load(keyStoreFile.inputStream())
 
         val googleClientId = properties.getProperty("GOOGLE_CLIENT_ID") ?: ""
-        val accessCode = properties.getProperty("ACCESS_CODE")
 
         buildConfigField("String", "GOOGLE_CLIENT_ID", "\"$googleClientId\"")
-        buildConfigField("String", "ACCESS_C0DE", "\"$accessCode\"")
     }
 
     buildTypes {
@@ -67,17 +64,15 @@ dependencies {
 
     // Import the Firebase BoM
     implementation(platform(libs.firebase.bom.v3270))
-    implementation(libs.firebase.analytics)
-    implementation(libs.firebase.analytics.ktx)
-    implementation (libs.firebase.database)
-    // Firebase Auth KTX
-    implementation(libs.play.services.auth)
+    implementation(libs.firebase.database)
     implementation(libs.firebase.auth.ktx)
+    implementation(libs.play.services.auth.v2070)
+    implementation(libs.play.services.base)
 
     // Location
     implementation(libs.play.services.location)
 
-    //Retrofit - APIs and https
+    // Retrofit - APIs and https
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
 
@@ -86,6 +81,7 @@ dependencies {
 
     // Coroutines - Asynchronous Code
     implementation(libs.kotlinx.coroutines.android)
+
     //Fragment
     implementation(libs.androidx.fragment.ktx)
     //Activity

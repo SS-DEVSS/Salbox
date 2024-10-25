@@ -9,6 +9,7 @@ firebaseBomVersion = "32.0.0"
 firebaseDatabase = "21.0.0"
 fragmentKtx = "1.8.4"
 googleFirebaseBom = "32.7.0"
+googlePlayServicesAuth = "20.7.0"
 googleServices = "4.4.2"
 kotlin = "1.9.0"
 coreKtx = "1.13.1"
@@ -23,7 +24,9 @@ activity = "1.9.3"
 constraintlayout = "2.1.4"
 playServicesAuth = "21.2.0"
 playServicesAuthVersion = "20.5.0"
+playServicesBase = "18.5.0"
 playServicesLocation = "21.3.0"
+playServicesLocationVersion = "latest_version"
 retrofit = "2.9.0"
 firebaseAuthCommon = "9.8.0"
 firebaseFirestoreKtx = "25.1.1"
@@ -58,7 +61,10 @@ androidx-activity = { group = "androidx.activity", name = "activity", version.re
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "playServicesAuth" }
 play-services-auth-v2050 = { module = "com.google.android.gms:play-services-auth", version.ref = "playServicesAuthVersion" }
+play-services-auth-v2070 = { module = "com.google.android.gms:play-services-auth", version.ref = "googlePlayServicesAuth" }
+play-services-base = { module = "com.google.android.gms:play-services-base", version.ref = "playServicesBase" }
 play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
+play-services-location-vlatestversion = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocationVersion" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 firebase-auth-common = { group = "com.google.firebase", name = "firebase-auth-common", version.ref = "firebaseAuthCommon" }
 firebase-firestore-ktx = { group = "com.google.firebase", name = "firebase-firestore-ktx", version.ref = "firebaseFirestoreKtx" }

@@ -17,10 +17,8 @@
     import androidx.core.view.ViewCompat
     import androidx.core.view.WindowInsetsCompat
     import androidx.lifecycle.Observer
-    import androidx.lifecycle.ViewModelProvider
     import com.salbox.salboxdriverapp.R
     import com.salbox.salboxdriverapp.data.services.LocationService
-    import com.salbox.salboxdriverapp.ui.viewmodel.LoginViewModel
     import com.salbox.salboxdriverapp.ui.viewmodel.MainViewModel
     import com.salbox.salboxdriverapp.ui.viewmodel.PermissionState
 
@@ -31,7 +29,6 @@
     class MainActivity : AppCompatActivity() {
         // ViewModel instance to interact with the business logic and UI data
         private val mainViewModel: MainViewModel by viewModels()
-        private lateinit var loginViewModel: LoginViewModel
 
 
         /**
@@ -51,9 +48,6 @@
 
             // Check for permissions when the activity starts
             mainViewModel.checkAndRequestPermissions()
-
-            // Initialize Login ViewModel
-            loginViewModel = ViewModelProvider(this)[LoginViewModel::class.java]
         }
 
         /**
@@ -176,14 +170,6 @@
         }
 
         /**
-         * Displays a Toast message to the user.
-         * @param message The message to display
-         */
-        private fun showToast(message: String) {
-            Toast.makeText(this, message, Toast.LENGTH_LONG).show()
-        }
-
-        /**
          * Starts the location sharing process by invoking the ViewModel to start location updates.
          */
         @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
@@ -200,10 +186,18 @@
             ) {
                 val serviceIntent = Intent(this, LocationService::class.java)
                 ContextCompat.startForegroundService(this, serviceIntent)
+                showToast(getString(R.string.starting_live_location))
             } else {
-                // If foreground service location permission is not granted, request it
                 requestForegroundServiceLocationPermission()
             }
+        }
+
+        /**
+         * Displays a Toast message to the user.
+         * @param message The message to display
+         */
+        private fun showToast(message: String) {
+            Toast.makeText(this, message, Toast.LENGTH_LONG).show()
         }
 
 

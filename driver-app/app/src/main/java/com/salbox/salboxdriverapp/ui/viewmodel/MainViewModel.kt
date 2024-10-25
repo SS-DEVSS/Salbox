@@ -39,62 +39,8 @@ sealed class PermissionState {
  * Manages the location data, permissions, and interactions with the LocationRepository.
  */
 class MainViewModel(application: Application) : AndroidViewModel(application) {
-
-    // LiveData to hold the current location
-    private val _location = MutableLiveData<Location>()
-    val location: LiveData<Location> = _location
-
-    // Instance of the LocationRepository to send location data to the backend
-    private val repository: LocationRepository = LocationRepository()
-
-    // FusedLocationProviderClient for interacting with the location API
-    private val fusedLocationClient: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(application)
-
-    // LiveData to track the current permission state
     private val _permissionState = MutableLiveData<PermissionState>()
     val permissionState: LiveData<PermissionState> = _permissionState
-
-    /**
-     * Starts requesting location updates with high accuracy.
-     * This method assumes permissions have already been granted.
-     */
-    @SuppressLint("MissingPermission")
-    fun startLocationUpdates() {
-        // Create a location request with high accuracy and specific intervals
-        val locationRequest = LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 10000L)
-            .setWaitForAccurateLocation(false)
-            .setMinUpdateIntervalMillis(5000L)  // Fastest interval for updates
-            .setMaxUpdateDelayMillis(20000L)    // Maximum delay for batching updates
-            .build()
-
-        // Request location updates with the defined location request
-        fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, null)
-    }
-
-    // Location callback to receive location updates
-    private val locationCallback = object : LocationCallback() {
-        override fun onLocationResult(locationResult: LocationResult) {
-            super.onLocationResult(locationResult)
-            locationResult ?: return  // Ignore null results
-
-            // Update the LiveData with new locations and send the data to the backend
-            for (location in locationResult.locations) {
-                _location.value = location
-
-                viewModelScope.launch {
-                    sendLocationToBackend(location)
-                }
-            }
-        }
-    }
-
-    /**
-     * Sends the latest location data to the backend by calling the repository.
-     * @param location The current location to be sent to the backend.
-     */
-    private suspend fun sendLocationToBackend(location: Location) {
-        repository.sendLocationToBackend(location)
-    }
 
     /**
      * Checks if the necessary permissions are granted and sets the appropriate permission state.
@@ -108,7 +54,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 _permissionState.value = PermissionState.RequestBackgroundPermission
             }
             else -> {
-                // Ask for foreground location permissions
                 _permissionState.value = PermissionState.RequestForegroundPermissions
             }
         }
@@ -123,8 +68,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         when (requestCode) {
             LOCATION_PERMISSION_CODE -> {
                 if (grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }) {
-                    // Foreground permission granted
-                    checkAndRequestPermissions() // Re-check for background permission
+                    checkAndRequestPermissions()
                 } else {
                     _permissionState.value = PermissionState.ShowToast("Location permissions are required to share your location")
                 }
@@ -159,7 +103,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 PERMISSION_BACKGROUND_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
         } else {
-            true  // Background permission is not required for pre-Q devices
+            true
         }
     }
 

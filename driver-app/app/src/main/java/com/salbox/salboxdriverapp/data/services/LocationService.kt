@@ -30,25 +30,22 @@ class LocationService : Service() {
     private val locationRepository = LocationRepository()
 
     companion object {
-        private const val CHANNEL_ID = "LocationServiceChannel" // Define your channel ID
+        private const val CHANNEL_ID = "1902"
     }
 
     override fun onCreate() {
         super.onCreate()
-        createNotificationChannel() // Create the notification channel
+        createNotificationChannel()
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         startForeground(1, createNotification())
         requestLocationUpdates()
     }
 
     private fun createNotificationChannel() {
-        // Create the NotificationChannel only on API 26+ because
-        // the NotificationChannel class is new and is not in the
-        // support library
         val serviceChannel = NotificationChannel(
             CHANNEL_ID,
             "Location Service Channel",
-            NotificationManager.IMPORTANCE_LOW // Set importance level
+            NotificationManager.IMPORTANCE_LOW
         )
         val manager = getSystemService(NotificationManager::class.java)
         manager?.createNotificationChannel(serviceChannel)
@@ -56,8 +53,8 @@ class LocationService : Service() {
 
     private fun createNotification(): Notification {
         val notificationBuilder = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setContentTitle("Location Service")
-            .setContentText("Tracking location...")
+            .setContentTitle("Servicio de Ubicación")
+            .setContentText("Compartiendo ubicación en tiempo real...")
             .setSmallIcon(R.drawable.baseline_location_on_24)
             .setPriority(NotificationCompat.PRIORITY_LOW)
 
@@ -74,10 +71,10 @@ class LocationService : Service() {
             }
         }
 
-        val locationRequest = LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 10000L)
+        val locationRequest = LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 5000L)
             .setWaitForAccurateLocation(false)
             .setMinUpdateIntervalMillis(5000L)
-            .setMaxUpdateDelayMillis(20000L)
+            .setMaxUpdateDelayMillis(10000L)
             .build()
 
         if (ActivityCompat.checkSelfPermission(
