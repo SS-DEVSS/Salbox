@@ -1,4 +1,4 @@
-package com.salbox.driverapp.data.services
+package com.salbox.salboxdriverapp.data.services
 
 import android.Manifest
 import android.app.Notification
@@ -8,7 +8,6 @@ import android.app.Service
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
-import android.os.Build
 import android.os.IBinder
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
@@ -18,8 +17,8 @@ import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
-import com.salbox.driverapp.R
-import com.salbox.driverapp.data.repository.LocationRepository
+import com.salbox.salboxdriverapp.R
+import com.salbox.salboxdriverapp.data.repository.LocationRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

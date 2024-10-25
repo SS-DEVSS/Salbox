@@ -1,8 +1,8 @@
-package com.salbox.driverapp.ui.view
+package com.salbox.salboxdriverapp.ui.view
 
 import android.app.Activity
 import android.os.Bundle
-import com.salbox.driverapp.databinding.ActivityErrorBinding
+import com.salbox.salboxdriverapp.databinding.ActivityErrorBinding
 
 class ErrorActivity: Activity() {
     private lateinit var binding: ActivityErrorBinding

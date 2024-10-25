@@ -1,4 +1,4 @@
-package com.salbox.driverapp.ui.viewmodel
+package com.salbox.salboxdriverapp.ui.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData

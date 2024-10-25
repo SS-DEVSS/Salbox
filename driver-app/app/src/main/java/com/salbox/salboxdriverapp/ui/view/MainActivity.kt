@@ -1,4 +1,4 @@
-    package com.salbox.driverapp.ui.view
+    package com.salbox.salboxdriverapp.ui.view
 
     import android.Manifest
     import android.content.Intent
@@ -18,11 +18,11 @@
     import androidx.core.view.WindowInsetsCompat
     import androidx.lifecycle.Observer
     import androidx.lifecycle.ViewModelProvider
-    import com.salbox.driverapp.R
-    import com.salbox.driverapp.data.services.LocationService
-    import com.salbox.driverapp.ui.viewmodel.LoginViewModel
-    import com.salbox.driverapp.ui.viewmodel.MainViewModel
-    import com.salbox.driverapp.ui.viewmodel.PermissionState
+    import com.salbox.salboxdriverapp.R
+    import com.salbox.salboxdriverapp.data.services.LocationService
+    import com.salbox.salboxdriverapp.ui.viewmodel.LoginViewModel
+    import com.salbox.salboxdriverapp.ui.viewmodel.MainViewModel
+    import com.salbox.salboxdriverapp.ui.viewmodel.PermissionState
 
     /**
      * MainActivity is the entry point of the app.

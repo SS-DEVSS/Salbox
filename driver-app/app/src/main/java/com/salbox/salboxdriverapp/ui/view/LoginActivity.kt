@@ -1,4 +1,4 @@
-package com.salbox.driverapp.ui.view
+package com.salbox.salboxdriverapp.ui.view
 
 import android.content.Intent
 import android.os.Bundle
@@ -15,14 +15,14 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.SignInButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import com.salbox.driverapp.R
-import com.salbox.driverapp.data.repository.UserRepository
-import com.salbox.driverapp.ui.viewmodel.LoginViewModel
+import com.salbox.salboxdriverapp.R
+import com.salbox.salboxdriverapp.data.repository.UserRepository
+import com.salbox.salboxdriverapp.ui.viewmodel.LoginViewModel
 import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var loginViewModel: LoginViewModel
-    val userRepository = UserRepository()
+    private val userRepository = UserRepository()
 
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
@@ -62,8 +62,10 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun signInWithGoogle() {
-        val signInIntent = googleSignInClient.signInIntent
-        googleSignInLauncher.launch(signInIntent)
+        googleSignInClient.signOut().addOnCompleteListener {
+            val signInIntent = googleSignInClient.signInIntent
+            googleSignInLauncher.launch(signInIntent)
+        }
     }
 
     // Launcher for handling Google Sign-In result

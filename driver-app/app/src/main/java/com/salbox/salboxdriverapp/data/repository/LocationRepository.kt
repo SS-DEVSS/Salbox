@@ -1,10 +1,10 @@
-package com.salbox.driverapp.data.repository
+package com.salbox.salboxdriverapp.data.repository
 
 import android.location.Location
 import android.util.Log
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.salbox.driverapp.data.model.LocationData
+import com.salbox.salboxdriverapp.data.model.LocationData
 import kotlinx.coroutines.tasks.await
 
 class LocationRepository() {

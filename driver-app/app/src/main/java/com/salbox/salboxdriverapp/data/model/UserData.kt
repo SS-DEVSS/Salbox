@@ -1,4 +1,4 @@
-package com.salbox.driverapp.data.model
+package com.salbox.salboxdriverapp.data.model
 
 data class UserData(
     val email: String,

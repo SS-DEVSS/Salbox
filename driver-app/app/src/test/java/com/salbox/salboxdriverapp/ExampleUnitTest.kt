@@ -1,4 +1,4 @@
-package com.salbox.driverapp
+package com.salbox.salboxdriverapp
 
 import org.junit.Test
 

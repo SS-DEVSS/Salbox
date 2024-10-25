@@ -8,11 +8,11 @@ plugins {
 }
 
 android {
-    namespace = "com.salbox.driverapp"
+    namespace = "com.salbox.salboxdriverapp"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.salbox.driverapp"
+        applicationId = "com.salbox.salboxdriverapp"
         minSdk = 29
         targetSdk = 34
         versionCode = 1

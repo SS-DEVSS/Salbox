@@ -1,4 +1,4 @@
-package com.salbox.driverapp.data.repository
+package com.salbox.salboxdriverapp.data.repository
 
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await

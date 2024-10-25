@@ -1,4 +1,4 @@
-package com.salbox.driverapp.ui.viewmodel
+package com.salbox.salboxdriverapp.ui.viewmodel
 
 import android.annotation.SuppressLint
 import android.app.Application
@@ -10,11 +10,11 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.salbox.driverapp.data.repository.LocationRepository
-import com.salbox.driverapp.ui.view.MainActivity.Companion.BACKGROUND_LOCATION_PERMISSION_CODE
-import com.salbox.driverapp.ui.view.MainActivity.Companion.FOREGROUND_LOCATION_PERMISSIONS
-import com.salbox.driverapp.ui.view.MainActivity.Companion.LOCATION_PERMISSION_CODE
-import com.salbox.driverapp.ui.view.MainActivity.Companion.PERMISSION_BACKGROUND_LOCATION
+import com.salbox.salboxdriverapp.data.repository.LocationRepository
+import com.salbox.salboxdriverapp.ui.view.MainActivity.Companion.BACKGROUND_LOCATION_PERMISSION_CODE
+import com.salbox.salboxdriverapp.ui.view.MainActivity.Companion.FOREGROUND_LOCATION_PERMISSIONS
+import com.salbox.salboxdriverapp.ui.view.MainActivity.Companion.LOCATION_PERMISSION_CODE
+import com.salbox.salboxdriverapp.ui.view.MainActivity.Companion.PERMISSION_BACKGROUND_LOCATION
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
