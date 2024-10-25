@@ -1,9 +1,10 @@
 import { DataTable } from "../components/DataTable";
 import { DataTableValues } from "../components/DataTableValues";
+import MobileTable from "../components/MobileTable";
 
 const TableComparison = () => {
   return (
-    <main className="bg-scarlet-400 mt-32 py-20 text-white text-center">
+    <main className="bg-scarlet-400 mt-10 md:mt-20 lg:mt-24 py-20 text-white text-center">
       <h4 className="font-semibold text-xl uppercase text-white_smoke">
         Comparación
       </h4>
@@ -15,7 +16,10 @@ const TableComparison = () => {
         para disfrutar en el menor tiempo posible. Descubre cómo preparamos tu
         platillo con precisión y cuidado.
       </p>
-      <div className="flex max-w-[1400px] px-10 mx-auto">
+      <div className="lg:hidden">
+        <MobileTable />
+      </div>
+      <div className="hidden lg:flex max-w-[1400px] px-10 mx-auto">
         <DataTable />
         <DataTableValues />
       </div>

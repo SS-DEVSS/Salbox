@@ -6,7 +6,6 @@ import {
 import { CheckCircle2, XCircle } from "lucide-react";
 import { Table, TableBody, TableCell, TableHeader, TableRow } from "./ui/table";
 
-// Sample data
 const data = [
   {
     salbox: "-30 min",
@@ -42,7 +41,7 @@ export const columns = [
     cell: ({ row }: { row: any }) => {
       const value = row.getValue("salbox");
       return (
-        <div className="text-center flex justify-center p-2 py-4 text-white rounded-none">
+        <div className="text-center flex justify-center p-2 py-4 rounded-none">
           {value === "check" ? (
             <CheckCircle2 size={24} />
           ) : value === "close" ? (
