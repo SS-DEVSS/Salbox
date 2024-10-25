@@ -1,7 +1,9 @@
 package com.salbox.salboxdriverapp.ui.viewmodel
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.Application
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Build
@@ -21,6 +23,7 @@ import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
+import com.salbox.salboxdriverapp.data.services.LocationService
 import kotlinx.coroutines.launch
 
 /**
@@ -34,14 +37,20 @@ sealed class PermissionState {
     data class ShowToast(val message: String) : PermissionState()  // Show toast with message
 }
 
+/**
+ * Represents the different states of sharing location button.
+ */
 sealed class LiveLocationButtonState {
     data object STOP : LiveLocationButtonState()
     data object SHARE : LiveLocationButtonState()
 }
 
+
 /**
- * ViewModel for handling location updates and permissions in an Android application.
- * Manages the location data, permissions, and interactions with the LocationRepository.
+ * ViewModel for managing location updates and permission requests in the application.
+ * This ViewModel interacts with the LocationRepository and controls location data handling
+ * and permissions for accessing the user's location.
+ * @param application The Application instance required to access context-dependent services.
  */
 class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val _permissionState = MutableLiveData<PermissionState>()
@@ -51,7 +60,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val liveLocationButtonState: LiveData<LiveLocationButtonState> = _liveLocationButtonState
 
     /**
-     * Checks if the necessary permissions are granted and sets the appropriate permission state.
+     * Verifies the necessary permissions and sets the appropriate [PermissionState] based on
+     * the app's current permissions for location access.
      */
     fun checkAndRequestPermissions() {
         when {
@@ -68,9 +78,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     /**
-     * Handles the result of the permission request and updates the permission state accordingly.
-     * @param requestCode The code identifying the permission request.
-     * @param grantResults The result of the permission request.
+     * Processes the result of a permission request and updates the [PermissionState] accordingly.
+     * @param requestCode The code identifying which permission was requested.
+     * @param grantResults The results of the permission request.
      */
     fun handlePermissionResult(requestCode: Int, grantResults: IntArray) {
         when (requestCode) {
@@ -91,13 +101,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun setLiveLocationButtonState(state: LiveLocationButtonState) {
-        _liveLocationButtonState.value = state
-    }
-
     /**
-     * Checks if the app has foreground location permissions.
-     * @return True if foreground location permissions are granted, false otherwise.
+     * Checks if the app has foreground location permissions granted.
+     * @return True if all required foreground permissions are granted, false otherwise.
      */
     private fun hasForegroundLocationPermissions(): Boolean {
         return FOREGROUND_LOCATION_PERMISSIONS.all {
@@ -126,5 +132,33 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
      */
     private fun hasAllPermissions(): Boolean {
         return hasForegroundLocationPermissions() && hasBackgroundLocationPermission()
+    }
+
+    /**
+     * Initiates the location service if all required permissions are granted.
+     * @param activity The activity context from which the service is started.
+     */
+    fun startLocationServiceIfPermitted(activity: Activity) {
+        if (hasAllPermissions()) {
+            val intent = Intent(activity, LocationService::class.java)
+            activity.startService(intent)
+        }
+    }
+
+    /**
+     * Stops the ongoing location service if running.
+     * @param activity The activity context from which the service is stopped.
+     */
+    fun stopLocationService(activity: Activity) {
+        val intent = Intent(activity, LocationService::class.java)
+        activity.stopService(intent)
+    }
+
+    /**
+     * Updates the state of the live location button.
+     * @param state The new state for the live location button.
+     */
+    fun setLiveLocationButtonState(state: LiveLocationButtonState) {
+        _liveLocationButtonState.value = state
     }
 }

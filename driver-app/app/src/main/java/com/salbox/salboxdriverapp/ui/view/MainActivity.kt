@@ -5,7 +5,6 @@
     import android.content.pm.PackageManager
     import android.os.Build
     import android.os.Bundle
-    import android.util.Log
     import android.view.View
     import android.widget.Button
     import android.widget.Toast
@@ -21,7 +20,6 @@
     import androidx.lifecycle.Observer
     import com.google.android.material.chip.ChipGroup
     import com.salbox.salboxdriverapp.R
-    import com.salbox.salboxdriverapp.data.services.LocationService
     import com.salbox.salboxdriverapp.databinding.ActivityMainBinding
     import com.salbox.salboxdriverapp.ui.viewmodel.LiveLocationButtonState
     import com.salbox.salboxdriverapp.ui.viewmodel.MainViewModel
@@ -54,25 +52,12 @@
             setContentView(binding.root)
 
             setupWindowInsets()
-
-            shareLiveLocationButton = findViewById(R.id.share_live_location_button)
-            stopLiveLocationButton = findViewById(R.id.stop_live_location_button)
-            activeLocationStatusChip = findViewById(R.id.active_location_status_chip)
-            inactiveLocationStatusChip = findViewById(R.id.inactive_location_status_chip)
-
-
+            initializeViews()
             setupObservers()
             setupClickListeners()
 
             mainViewModel.checkAndRequestPermissions()
-
             mainViewModel.setLiveLocationButtonState(LiveLocationButtonState.STOP)
-            /*mainViewModel.liveLocationButtonState.observe(this, Observer { state ->
-                when(state) {
-                    LiveLocationButtonState.STOP -> binding.shareLiveLocationButton.text = getString(R.string.stop_share_live_location)
-                    LiveLocationButtonState.SHARE -> binding.shareLiveLocationButton.text = getString(R.string.share_live_location)
-                }
-            })*/
         }
 
         /**
@@ -85,6 +70,16 @@
                 insets
             }
         }
+
+         /**
+          * Finds all views by ID and initialize them to the corresponding variable
+          */
+         private fun initializeViews() {
+             shareLiveLocationButton = findViewById(R.id.share_live_location_button)
+             stopLiveLocationButton = findViewById(R.id.stop_live_location_button)
+             activeLocationStatusChip = findViewById(R.id.active_location_status_chip)
+             inactiveLocationStatusChip = findViewById(R.id.inactive_location_status_chip)
+         }
 
         /**
          * Sets up LiveData observers for the ViewModel's permission state and location updates.
@@ -100,6 +95,13 @@
                     is PermissionState.ShowToast -> showToast(state.message)
                 }
             })
+
+            mainViewModel.liveLocationButtonState.observe(this, Observer {state ->
+                when(state) {
+                    is LiveLocationButtonState.STOP -> startLocationUpdates()
+                    is LiveLocationButtonState.SHARE -> stopLocationUpdates()
+                }
+            })
         }
 
         /**
@@ -107,28 +109,12 @@
          */
         private fun setupClickListeners() {
             shareLiveLocationButton.setOnClickListener {
-                toggleButtons(true)
-
-                when (mainViewModel.liveLocationButtonState.value) {
-                    LiveLocationButtonState.STOP -> {
-                        Log.d("LIVE", mainViewModel.liveLocationButtonState.value.toString())
-                        mainViewModel.setLiveLocationButtonState(LiveLocationButtonState.SHARE)
-                    }
-                    LiveLocationButtonState.SHARE -> {
-                        Log.d("LIVE", mainViewModel.liveLocationButtonState.value.toString())
-                        mainViewModel.setLiveLocationButtonState(LiveLocationButtonState.STOP)
-                    }
-                    null -> {
-                        // Puedes mostrar un mensaje o simplemente salir de la función
-                        Log.d("LIVE", "Estado del botón es nulo.")
-                        // O puedes establecer un estado por defecto aquí, si es necesario
-                    }
-                }
+                mainViewModel.setLiveLocationButtonState(LiveLocationButtonState.STOP)
                 mainViewModel.checkAndRequestPermissions()
             }
 
-            stopLiveLocationButton.setOnClickListener {
-                toggleButtons(false)
+            stopLiveLocationButton.setOnClickListener{
+                mainViewModel.setLiveLocationButtonState(LiveLocationButtonState.SHARE)
             }
         }
 
@@ -229,31 +215,51 @@
                     FOREGROUND_SERVICE_LOCATION
                 ) == PackageManager.PERMISSION_GRANTED
             ) {
-                val serviceIntent = Intent(this, LocationService::class.java)
-                ContextCompat.startForegroundService(this, serviceIntent)
-                showToast(getString(R.string.starting_live_location))
+                startLocationUpdates()
             } else {
+                stopLocationUpdates()
                 requestForegroundServiceLocationPermission()
             }
         }
 
-         private fun toggleButtons(isSharing: Boolean) {
-             if(!isSharing) {
-                 shareLiveLocationButton.visibility = View.VISIBLE
-                 inactiveLocationStatusChip.visibility = View.VISIBLE
+         /**
+          * Function to start sharing location updates
+          */
+         private fun startLocationUpdates() {
+             mainViewModel.startLocationServiceIfPermitted(this)
+             toggleButtons(true)
+             showToast(getString(R.string.starting_live_location))
+         }
 
-                 stopLiveLocationButton.visibility = View.INVISIBLE
-                 activeLocationStatusChip.visibility = View.INVISIBLE
-             } else {
+         /**
+          * Function to stop sharing location updates
+          */
+         private fun stopLocationUpdates() {
+             mainViewModel.stopLocationService(this)
+             toggleButtons(false)
+         }
+
+         /**
+          * Function to update Button and Chip UI
+          * @param isSharing A boolean value to determine if location is currently being shared or not
+         */
+         private fun toggleButtons(isSharing: Boolean) {
+             if(isSharing) {
                  shareLiveLocationButton.visibility = View.INVISIBLE
                  inactiveLocationStatusChip.visibility = View.INVISIBLE
 
                  stopLiveLocationButton.visibility = View.VISIBLE
                  activeLocationStatusChip.visibility = View.VISIBLE
+             } else {
+                 shareLiveLocationButton.visibility = View.VISIBLE
+                 inactiveLocationStatusChip.visibility = View.VISIBLE
+
+                 stopLiveLocationButton.visibility = View.INVISIBLE
+                 activeLocationStatusChip.visibility = View.INVISIBLE
              }
          }
 
-        /**
+         /**
          * Displays a Toast message to the user.
          * @param message The message to display
          */

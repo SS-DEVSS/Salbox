@@ -7,9 +7,21 @@ import com.google.firebase.database.FirebaseDatabase
 import com.salbox.salboxdriverapp.data.model.LocationData
 import kotlinx.coroutines.tasks.await
 
+/**
+ * Repository responsible for handling location data persistence with a backend database.
+ * In this implementation, it stores location data in Firebase Realtime Database.
+ */
 class LocationRepository() {
     private val databaseReference: DatabaseReference = FirebaseDatabase.getInstance().getReference("location")
 
+    /**
+     * Sends the location data to the Firebase backend asynchronously.
+     *
+     * This method creates a LocationData object from the provided [Location] object, logs the
+     * location details for debugging, and uploads the data to the specified Firebase Database node.
+     *
+     * @param location A [Location] object representing the user's current location.
+     */
     suspend fun sendLocationToBackend(location: Location) {
         try {
             Log.i("Location", "LAT: ${location.latitude}, LON: ${location.longitude}")

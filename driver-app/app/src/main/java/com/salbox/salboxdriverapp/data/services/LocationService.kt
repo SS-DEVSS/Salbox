@@ -23,6 +23,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+/**
+ * LocationService is a foreground service that continuously updates the user's location
+ * and sends the data to the backend server.
+ */
 class LocationService : Service() {
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -33,6 +37,10 @@ class LocationService : Service() {
         private const val CHANNEL_ID = "1902"
     }
 
+    /**
+     * Called when the service is created. Initializes the location client, starts the
+     * foreground service with a notification, and begins requesting location updates.
+     */
     override fun onCreate() {
         super.onCreate()
         createNotificationChannel()
@@ -41,6 +49,9 @@ class LocationService : Service() {
         requestLocationUpdates()
     }
 
+    /**
+     * Creates a notification channel required for running the service in the foreground.
+     */
     private fun createNotificationChannel() {
         val serviceChannel = NotificationChannel(
             CHANNEL_ID,
@@ -51,6 +62,13 @@ class LocationService : Service() {
         manager?.createNotificationChannel(serviceChannel)
     }
 
+
+    /**
+     * Builds and returns a notification that displays the service's status to the user.
+     * This notification is displayed while the service is running in the foreground.
+     *
+     * @return A Notification instance displaying "Servicio de Ubicación" information.
+     */
     private fun createNotification(): Notification {
         val notificationBuilder = NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle("Servicio de Ubicación")
@@ -61,6 +79,10 @@ class LocationService : Service() {
         return notificationBuilder.build()
     }
 
+    /**
+     * Sets up and starts requesting location updates from the location client.
+     * The location data is sent to the backend every time it updates.
+     */
     private fun requestLocationUpdates() {
         locationCallback = object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
@@ -90,16 +112,31 @@ class LocationService : Service() {
         fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, null)
     }
 
+    /**
+     * Sends the location data to the backend server.
+     *
+     * @param location The user's current location to be sent to the backend.
+     */
     private fun sendLocationToBackend(location: Location) {
         CoroutineScope(Dispatchers.IO).launch {
             locationRepository.sendLocationToBackend(location)
         }
     }
 
+    /**
+     * Binding is not used for this service, so this function returns null.
+     *
+     * @param intent The intent that was used to bind to this service.
+     * @return Always returns null since this is not a bound service.
+     */
     override fun onBind(intent: Intent?): IBinder? {
         return null
     }
 
+    /**
+     * Called when the service is destroyed. Removes location updates to prevent
+     * unnecessary battery usage and stop receiving location callbacks.
+     */
     override fun onDestroy() {
         super.onDestroy()
         fusedLocationClient.removeLocationUpdates(locationCallback)

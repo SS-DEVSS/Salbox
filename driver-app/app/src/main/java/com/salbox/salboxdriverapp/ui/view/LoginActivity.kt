@@ -21,11 +21,16 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.salbox.salboxdriverapp.BuildConfig
 import com.salbox.salboxdriverapp.R
 import com.salbox.salboxdriverapp.data.repository.UserRepository
-import com.salbox.salboxdriverapp.ui.viewmodel.LoginViewModel
 import kotlinx.coroutines.launch
 
+/**
+ * Activity for user login functionality, including Google Sign-In integration.
+ *
+ * This activity manages user authentication through Google Sign-In and verifies user roles
+ * before proceeding to the main application interface. It also handles the display of
+ * splash screens and error messages for user feedback.
+ */
 class LoginActivity : AppCompatActivity() {
-    private lateinit var loginViewModel: LoginViewModel
     private val userRepository = UserRepository()
 
     private lateinit var auth: FirebaseAuth
@@ -39,36 +44,48 @@ class LoginActivity : AppCompatActivity() {
         installSplashScreen()
         setContentView(R.layout.activity_login)
 
-        loginViewModel = ViewModelProvider(this)[(LoginViewModel::class.java)]
-
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
 
-        try {
-            initializeGoogleSignInClient()
-            initializeViews()
-            initializeClickListeners()
-            checkGooglePlayServices()
-        } catch (e: Exception) {
-            Log.e(TAG, "Error during initialization", e)
-            showToast("Error initializing sign-in. Please try again.")
-        }
+        initializeGoogleSignInClient()
+        initializeViews()
+        initializeClickListeners()
+        checkGooglePlayServices()
     }
 
+    /**
+     * Initializes the UI components for the activity.
+     */
+    private fun initializeViews() {
+        googleSignInButton = findViewById(R.id.googleSignInButton)
+    }
+
+    /**
+     * Sets up click listeners for UI components.
+     */
+    private fun initializeClickListeners() {
+        googleSignInButton.setOnClickListener { signInWithGoogle() }
+    }
+
+    /**
+     * Checks if Google Play Services are available on the device.
+     * If not, shows an error dialog or a toast message to the user.
+     */
     private fun checkGooglePlayServices() {
         val googleApiAvailability = GoogleApiAvailability.getInstance()
         val status = googleApiAvailability.isGooglePlayServicesAvailable(this)
 
         if (status != ConnectionResult.SUCCESS) {
-            Log.e(TAG, "Google Play Services not available: $status")
+            showToast(getString(R.string.google_sigin_error))
             if (googleApiAvailability.isUserResolvableError(status)) {
                 googleApiAvailability.getErrorDialog(this, status, 2404)?.show()
             }
-        } else {
-            Log.d(TAG, "Google Play Services is available")
         }
     }
 
+    /**
+     * Initializes the Google Sign-In client with appropriate options.
+     */
     private fun initializeGoogleSignInClient() {
         try {
             val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -77,38 +94,29 @@ class LoginActivity : AppCompatActivity() {
                 .build()
 
             googleSignInClient = GoogleSignIn.getClient(this, gso)
-
-            Log.d(TAG, "Package name: ${applicationContext.packageName}")
-            Log.d(TAG, "Google Web Client ID: $googleWebClientId")
         } catch (e: Exception) {
-            Log.e(TAG, "Error initializing Google Sign-In client", e)
-            throw e
+            showToast(getString(R.string.unauthorized))
         }
     }
 
-    private fun initializeViews() {
-        googleSignInButton = findViewById(R.id.googleSignInButton)
-    }
-
-    private fun initializeClickListeners() {
-        googleSignInButton.setOnClickListener { signInWithGoogle() }
-    }
-
+    /**
+     * Initiates Google Sign-In process.
+     * Signs out any previously signed-in user before launching the sign-in intent.
+     */
     private fun signInWithGoogle() {
         try {
             googleSignInClient.signOut().addOnCompleteListener {
                 val signInIntent = googleSignInClient.signInIntent
                 googleSignInLauncher.launch(signInIntent)
             }.addOnFailureListener { e ->
-                Log.e(TAG, "Error signing out previous session", e)
-                showToast("Error preparing sign-in. Please try again.")
+                showToast(getString(R.string.unauthorized))
             }
         } catch (e: Exception) {
-            Log.e(TAG, "Error during sign in process", e)
-            showToast("Sign-in error. Please try again.")
+            showToast(getString(R.string.unauthorized))
         }
     }
 
+    // Activity Result Launcher for Google Sign-In
     private val googleSignInLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
@@ -117,16 +125,22 @@ class LoginActivity : AppCompatActivity() {
             if (task.isSuccessful) {
                 val account = task.result
                 account?.let { firebaseAuthWithGoogle(it) }
-                loginViewModel.setUser(account)
             } else {
                 showToast(getString(R.string.google_sigin_error))
             }
         } else {
-            Log.d("AUTH", result.toString())
-
+            showToast(getString(R.string.unauthorized))
         }
     }
 
+    /**
+     * Authenticates the user with Firebase using the Google account credentials.
+     *
+     * If authentication is successful, retrieves the user's role and navigates to the main activity
+     * if the user is an admin; otherwise, signs out the user and shows an unauthorized error.
+     *
+     * @param account The signed-in Google account containing user information.
+     */
     private fun firebaseAuthWithGoogle(account: GoogleSignInAccount) {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         auth.signInWithCredential(credential)
@@ -137,21 +151,17 @@ class LoginActivity : AppCompatActivity() {
                         lifecycleScope.launch {
                             try {
                                 val userEmail = user.email.toString()
-                                Log.d(TAG, "Checking role for user: $userEmail")
                                 val userRole = userRepository.getUserRoleByEmail(userEmail)
-
                                 if (userRole == "admin") {
                                     startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                                     finish()
                                 } else {
-                                    Log.d(TAG, "Unauthorized role: $userRole")
                                     auth.signOut()
                                     showToast(getString(R.string.unauthorized))
                                 }
                             } catch (e: Exception) {
-                                Log.e(TAG, "Error checking user role", e)
                                 auth.signOut()
-                                showToast("Error verifying permissions. Please try again.")
+                                showToast(getString(R.string.google_sigin_error))
                             }
                         }
 
@@ -164,12 +174,13 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
     }
+    /**
+     * Displays a toast message to the user.
+     *
+     * @param message The message to display in the toast.
+     */
 
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
-
-    companion object {
-        private const val TAG = "LoginActivity"
     }
 }

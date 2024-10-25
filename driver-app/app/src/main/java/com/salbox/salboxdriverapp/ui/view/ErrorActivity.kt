@@ -12,7 +12,7 @@ class ErrorActivity: Activity() {
     }
 
     private fun initializeBinding() {
-        binding =ActivityErrorBinding.inflate(layoutInflater)
+        binding = ActivityErrorBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
 }
