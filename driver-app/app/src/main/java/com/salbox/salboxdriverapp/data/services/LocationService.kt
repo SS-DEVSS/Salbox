@@ -93,10 +93,10 @@ class LocationService : Service() {
             }
         }
 
-        val locationRequest = LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 5000L)
-            .setWaitForAccurateLocation(false)
-            .setMinUpdateIntervalMillis(5000L)
-            .setMaxUpdateDelayMillis(10000L)
+        val locationRequest = LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 500L)
+            .setWaitForAccurateLocation(true)
+            .setMinUpdateIntervalMillis(500L)
+            .setMaxUpdateDelayMillis(100L)
             .build()
 
         if (ActivityCompat.checkSelfPermission(
