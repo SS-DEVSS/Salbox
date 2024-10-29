@@ -88,7 +88,7 @@ class LocationService : Service() {
             override fun onLocationResult(locationResult: LocationResult) {
                 super.onLocationResult(locationResult)
                 locationResult.locations.forEach { location ->
-                    sendLocationToBackend(location)
+                      sendLocationToBackend(location)
                 }
             }
         }
