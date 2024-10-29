@@ -5,6 +5,7 @@
     import android.content.pm.PackageManager
     import android.os.Build
     import android.os.Bundle
+    import android.util.Log
     import android.view.View
     import android.widget.Button
     import android.widget.Toast
@@ -92,7 +93,7 @@
                     is PermissionState.RequestForegroundPermissions -> requestForegroundPermissions()
                     is PermissionState.RequestBackgroundPermission -> showBackgroundPermissionRationale()
                     is PermissionState.AllPermissionsGranted -> startLocationService()
-                    is PermissionState.ShowToast -> showToast(state.message)
+                    is PermissionState.PermissionsDenied -> showPermissionsDenied()
                 }
             })
 
@@ -122,6 +123,7 @@
          * Shows a dialog explaining why foreground location permission is required.
          */
         private fun showForegroundPermissionRationale() {
+            Log.i("HERE", "showForegroundPermissionRationale")
             AlertDialog.Builder(this)
                 .setTitle(getString(R.string.required_location_permission_title))
                 .setMessage(getString(R.string.required_location_permission_desc))
@@ -140,6 +142,7 @@
          * Shows a dialog explaining why background location permission is required.
          */
         private fun showBackgroundPermissionRationale() {
+            Log.i("HERE", "showBackgroundPermissionRationale")
             AlertDialog.Builder(this)
                 .setTitle(getString(R.string.required_location_bglocation_title))
                 .setMessage(getString(R.string.required_location_bglocation_desc))
@@ -196,8 +199,9 @@
             permissions: Array<out String>,
             grantResults: IntArray
         ) {
+            Log.i("HERE", "onRequestPermissionsResult")
             super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-            mainViewModel.handlePermissionResult(requestCode, grantResults) // Passes the results to ViewModel
+            mainViewModel.handlePermissionResult(requestCode, grantResults)
         }
 
         /**
@@ -228,15 +232,21 @@
          private fun startLocationUpdates() {
              mainViewModel.startLocationServiceIfPermitted(this)
              toggleButtons(true)
-             showToast(getString(R.string.starting_live_location))
          }
 
          /**
           * Function to stop sharing location updates
           */
-         private fun stopLocationUpdates() {
+         private fun stopLocationUpdates(message: String = "") {
              mainViewModel.stopLocationService(this)
              toggleButtons(false)
+
+             if(message.isNotEmpty()) showToast(message)
+         }
+
+         private fun showPermissionsDenied() {
+             showToast(getString(R.string.grant_permissions_manually_title))
+             startActivity(Intent(this, PermissionsDeniedActivity::class.java))
          }
 
          /**

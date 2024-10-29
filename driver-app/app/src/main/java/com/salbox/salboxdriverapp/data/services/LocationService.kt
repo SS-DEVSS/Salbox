@@ -88,15 +88,15 @@ class LocationService : Service() {
             override fun onLocationResult(locationResult: LocationResult) {
                 super.onLocationResult(locationResult)
                 locationResult.locations.forEach { location ->
-                    sendLocationToBackend(location)
+                      sendLocationToBackend(location)
                 }
             }
         }
 
-        val locationRequest = LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 5000L)
-            .setWaitForAccurateLocation(false)
-            .setMinUpdateIntervalMillis(5000L)
-            .setMaxUpdateDelayMillis(10000L)
+        val locationRequest = LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 500L)
+            .setWaitForAccurateLocation(true)
+            .setMinUpdateIntervalMillis(500L)
+            .setMaxUpdateDelayMillis(100L)
             .build()
 
         if (ActivityCompat.checkSelfPermission(

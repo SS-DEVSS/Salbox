@@ -52,6 +52,12 @@
             />
 
         <activity
+            android:name=".ui.view.PermissionsDeniedActivity"
+            android:exported="true"
+            android:theme="@style/Theme.SalboxDriverApp"
+            />
+
+        <activity
             android:name=".ui.view.ErrorActivity"
             android:exported="true"
             android:theme="@style/Theme.SalboxDriverApp"

@@ -10,6 +10,8 @@
     <string name="restart">Reiniciar</string>
     <string name="salbox_logo_alt">Salbox Logo</string>
     <!-- PERMISSIONS -->
+    <string name="grant_permissions_manually_title">Habilita los permisos de ubicación manualmente.</string>
+    <string name="grant_permissions_manually_desc">Por favor, habilita los permisos de ubicación manualmente desde los ajustes del sistema.</string>
     <string name="required_location_permission_title">Se require permiso de ubicación</string>
     <string name="required_location_permission_desc">Esta aplicación necesita permiso de ubicación para compartir tu ubicación en vivo. Concédelo en el siguiente cuadro de diálogo.</string>
     <string name="required_location_bglocation_title">Se requiere permiso de ubicación en segundo plano</string>

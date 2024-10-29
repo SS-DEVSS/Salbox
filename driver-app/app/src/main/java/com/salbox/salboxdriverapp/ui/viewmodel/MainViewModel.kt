@@ -1,30 +1,19 @@
 package com.salbox.salboxdriverapp.ui.viewmodel
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Application
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.location.Location
 import android.os.Build
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
-import com.salbox.salboxdriverapp.data.repository.LocationRepository
 import com.salbox.salboxdriverapp.ui.view.MainActivity.Companion.BACKGROUND_LOCATION_PERMISSION_CODE
 import com.salbox.salboxdriverapp.ui.view.MainActivity.Companion.FOREGROUND_LOCATION_PERMISSIONS
 import com.salbox.salboxdriverapp.ui.view.MainActivity.Companion.LOCATION_PERMISSION_CODE
 import com.salbox.salboxdriverapp.ui.view.MainActivity.Companion.PERMISSION_BACKGROUND_LOCATION
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationRequest
-import com.google.android.gms.location.LocationResult
-import com.google.android.gms.location.LocationServices
-import com.google.android.gms.location.Priority
 import com.salbox.salboxdriverapp.data.services.LocationService
-import kotlinx.coroutines.launch
 
 /**
  * Represents the different states of location permission that the app can handle.
@@ -34,7 +23,7 @@ sealed class PermissionState {
     data object RequestForegroundPermissions : PermissionState()   // Request foreground location permission
     data object RequestBackgroundPermission : PermissionState()    // Request background location permission
     data object AllPermissionsGranted : PermissionState()  // All necessary permissions granted
-    data class ShowToast(val message: String) : PermissionState()  // Show toast with message
+    data object PermissionsDenied : PermissionState()  // Show toast with message
 }
 
 /**
@@ -44,7 +33,6 @@ sealed class LiveLocationButtonState {
     data object STOP : LiveLocationButtonState()
     data object SHARE : LiveLocationButtonState()
 }
-
 
 /**
  * ViewModel for managing location updates and permission requests in the application.
@@ -88,14 +76,14 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 if (grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }) {
                     checkAndRequestPermissions()
                 } else {
-                    _permissionState.value = PermissionState.ShowToast("Location permissions are required to share your location")
+                    _permissionState.value = PermissionState.PermissionsDenied
                 }
             }
             BACKGROUND_LOCATION_PERMISSION_CODE -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     _permissionState.value = PermissionState.AllPermissionsGranted
                 } else {
-                    _permissionState.value = PermissionState.ShowToast("Background location permission is needed for this feature")
+                    _permissionState.value = PermissionState.PermissionsDenied
                 }
             }
         }
