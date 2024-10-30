@@ -30,10 +30,7 @@ const FollowSalbox = () => {
         instantáneo a tu puerta.
       </p>
       <div className="mx-auto w-[90%] lg:w-[80%] h-[300px] lg:h-[75vh] mb-8 lg:mb-0 bg-slate-300 rounded-xl">
-        <APIProvider
-          apiKey={apiKey}
-          onLoad={() => console.log("Maps API has loaded.")}
-        >
+        <APIProvider apiKey={apiKey}>
           <Map
             mapId="b02d85ede98fd2bc"
             style={{

@@ -8,6 +8,7 @@ import ContactInfo from "./modules/ContactInfo";
 import DeliveryTimeline from "./modules/DeliveryTimeline";
 import Faq from "./modules/Faq";
 import FollowSalbox from "./modules/FollowSalbox";
+import Galeria from "./modules/Galeria";
 import Hero from "./modules/Hero";
 import Menu from "./modules/Menu";
 import QualityWarranty from "./modules/QualityWarranty";
@@ -24,11 +25,16 @@ function App() {
     setPhoneNumber(value);
   };
 
-  console.log(phoneNumber);
+  // console.log(phoneNumber);
 
   return (
     <PlatinumLayout>
-      <Hero phoneNumber={phoneNumber} handlePhoneNumber={handlePhoneNumber} />
+      <Hero
+        phoneNumber={phoneNumber}
+        handlePhoneNumber={handlePhoneNumber}
+        registered={registered}
+        setRegistered={setRegistered}
+      />
       <Benefits />
       <AboutUs />
       <Promotions />
@@ -45,6 +51,7 @@ function App() {
       <Menu />
       <FollowSalbox />
       <ContactInfo />
+      <Galeria />
       <Faq />
     </PlatinumLayout>
   );
