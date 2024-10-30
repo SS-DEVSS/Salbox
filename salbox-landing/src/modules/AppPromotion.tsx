@@ -79,8 +79,8 @@ export function AppPromotion() {
           <div className="flex items-center gap-6 p-4 px-8 rounded-lg border border-[##A4A4A4] bg-black">
             <img src={AppleIcon} className="w-14 h-14" alt="apple img" />
             <div>
-              <p className="uppercase text-white text-lg">Consíguelo en el</p>
-              <p className="uppercase text-white font-semibold text-xl xl:text-3xl">
+              <p className="uppercase text-white text-md">Consíguelo en el</p>
+              <p className="uppercase text-white font-semibold text-xl xl:text-2xl">
                 App Store
               </p>
             </div>
@@ -92,8 +92,8 @@ export function AppPromotion() {
               alt="google play img"
             />
             <div>
-              <p className="uppercase text-white text-lg">Disponible en</p>
-              <p className="uppercase text-white font-semibold text-xl xl:text-3xl">
+              <p className="uppercase text-white text-md">Disponible en</p>
+              <p className="uppercase text-white font-semibold text-xl xl:text-2xl">
                 Google Play
               </p>
             </div>
