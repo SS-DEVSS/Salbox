@@ -77,7 +77,7 @@ const FollowSalbox = () => {
   ), [location, pos]);
 
   return (
-    <section className="pt-6 md:py-14 md:pb-10">
+    <section id='follow-salbox' className="pt-6 md:py-14 md:pb-10">
       <h1 className="text-center text-[28px] md:text-[40px] font-bold px-6">
         Sigue a Salbox
       </h1>

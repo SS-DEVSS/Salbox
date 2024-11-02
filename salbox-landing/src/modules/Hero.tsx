@@ -2,6 +2,7 @@ import { CheckCircle2 } from "lucide-react";
 import { Dispatch, useEffect, useState } from "react";
 import Confetti from "react-confetti";
 import RegisterForm from '../components/RegisterForm';
+import { Link } from 'react-router-dom';
 
 /**
  * @typedef {Object} HeroProps
@@ -12,7 +13,7 @@ import RegisterForm from '../components/RegisterForm';
  */
 type HeroProps = {
   phoneNumber: string | null;
-  handlePhoneNumber: () => void;
+  handlePhoneNumber: (event: React.ChangeEvent<HTMLInputElement>) => void;
   registered: boolean;
   setRegistered: Dispatch<React.SetStateAction<boolean>>;
 };
@@ -76,16 +77,20 @@ const Hero = ({
         )}
 
         <div className="flex mt-32">
-          <img
-            className="w-16"
-            src="icons/IconFacebook.png"
-            alt="Instagram Icon"
-          />
-          <img
-            className="w-16"
-            src="icons/IconInstagram.png"
-            alt="Facebook Icon"
-          />
+          <Link to={"https://www.instagram.com/salbox.mx/"}
+            target='_blank'>
+            <img
+              className="w-16"
+              src="icons/IconInstagram.png"
+              alt="Instagram Icon"
+            /></Link>
+          <Link to={"https://www.facebook.com/salbox.mx"}
+            target='_blank'>
+            <img
+              className="w-16"
+              src="icons/IconFacebook.png"
+              alt="Facebook Icon"
+            /></Link>
         </div>
       </section>
       <div className="hidden lg:block mx-auto basis-1/2">

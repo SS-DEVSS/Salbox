@@ -3,7 +3,7 @@ import { timelineData } from "../constants/timelineData";
 
 const DeliveryTimeline = () => {
   return (
-    <main className="py-20">
+    <main id='delivery' className="py-20">
       <h2 className="text-center text-[28px] md:text-[40px] font-bold px-6">
         Detalle del proceso de entrega
       </h2>

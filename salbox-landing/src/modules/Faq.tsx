@@ -9,7 +9,7 @@ import {
 
 const Faq = () => {
   return (
-    <div className="flex flex-col mt-10 md:my-20 lg:flex-row md:gap-6 lg:pr-20">
+    <div id='faq' className="flex flex-col mt-10 md:my-20 lg:flex-row md:gap-6 lg:pr-20">
       <img
         src={AboutUsImg}
         className="hidden lg:block rounded-r-2xl object-cover w-[45%] max-h-[550px]"

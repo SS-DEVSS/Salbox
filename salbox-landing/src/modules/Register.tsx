@@ -4,7 +4,7 @@ import RegisterForm from '../components/RegisterForm';
 
 type RegisterProps = {
   phoneNumber: string | null;
-  handlePhoneNumber: () => void;
+  handlePhoneNumber: (event: React.ChangeEvent<HTMLInputElement>) => void;
   registered: boolean;
   setRegistered: Dispatch<React.SetStateAction<boolean>>;
 };
@@ -16,7 +16,7 @@ const Register = ({
   setRegistered
 }: RegisterProps) => {
   return (
-    <main className="bg-moonstone-400 max-w-7xl m-4 mx-4 xl:mx-auto px-8 pt-10 lg:pt-4 text-center h-full lg:text-start rounded-xl flex flex-col lg:gap-10 items-center justify-center lg:flex-row-reverse lg:my-10 lg:pr-20">
+    <main id='registro' className="bg-moonstone-400 max-w-7xl m-4 mx-4 xl:mx-auto px-8 pt-10 lg:pt-4 text-center h-full lg:text-start rounded-xl flex flex-col lg:gap-10 items-center justify-center lg:flex-row-reverse lg:my-10 lg:pr-20">
       {!registered ? (
         <section className="flex flex-col items-center lg:items-start">
           <h2 className="text-3xl lg:text-[40px] font-semibold text-white">

@@ -25,9 +25,9 @@ function App() {
   const [phoneNumber, setPhoneNumber] = useState<string | null>(null);
   const [registered, setRegistered] = useState<boolean>(false);
 
-  const handlePhoneNumber = (e: React.FormEvent<HTMLFormElement>) => {
+  const handlePhoneNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    if (isNaN(value)) return;
+    if (isNaN(parseInt(value))) return;
     setPhoneNumber(value);
   };
 

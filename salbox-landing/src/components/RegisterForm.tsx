@@ -4,7 +4,7 @@ import { dbFirestore } from '../config/firebase-config';
 import { contactData } from '../data/contactData';
 type RegisterFormProps = {
   phoneNumber: string | null;
-  handlePhoneNumber: () => void;
+  handlePhoneNumber: (event: React.ChangeEvent<HTMLInputElement>) => void;
   setRegistered: Dispatch<React.SetStateAction<boolean>>;
   setConfetti?: Dispatch<React.SetStateAction<boolean>>;
 };
