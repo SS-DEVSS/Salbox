@@ -9,10 +9,10 @@ import {
 
 const Faq = () => {
   return (
-    <div className="flex flex-col lg:flex-row md:gap-6 lg:pr-20">
+    <div className="flex flex-col mt-10 md:my-20 lg:flex-row md:gap-6 lg:pr-20">
       <img
         src={AboutUsImg}
-        className="hidden lg:block rounded-r-2xl object-cover w-[45%] max-h-[420px]"
+        className="hidden lg:block rounded-r-2xl object-cover w-[45%] max-h-[550px]"
         alt="salbox about us"
       />
       <section className="basis-[55%]">
@@ -25,7 +25,12 @@ const Faq = () => {
           electrónico o teléfono.
         </p>
 
-        <Accordion type="single" collapsible className="w-full px-6 mb-8">
+        <Accordion
+          defaultValue="item-1"
+          type="single"
+          collapsible
+          className="w-full px-6 mb-8"
+        >
           <AccordionItem value="item-1">
             <AccordionTrigger>Is it accessible?</AccordionTrigger>
             <AccordionContent>
@@ -50,6 +55,20 @@ const Faq = () => {
           </AccordionItem>
           <hr className="mx-4" />
           <AccordionItem value="item-4">
+            <AccordionTrigger>Is it animated?</AccordionTrigger>
+            <AccordionContent>
+              Yes. It&apos;s animated by default, but you can disable it if you
+              prefer.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-5">
+            <AccordionTrigger>Is it animated?</AccordionTrigger>
+            <AccordionContent>
+              Yes. It&apos;s animated by default, but you can disable it if you
+              prefer.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-6">
             <AccordionTrigger>Is it animated?</AccordionTrigger>
             <AccordionContent>
               Yes. It&apos;s animated by default, but you can disable it if you

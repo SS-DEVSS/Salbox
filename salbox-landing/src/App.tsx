@@ -1,14 +1,19 @@
 import { useState } from "react";
 import PlatinumLayout from "./components/Layouts/PlatinumLayout";
+import Promotions from "./components/Promotions";
 import AboutUs from "./modules/AboutUs";
+import { AppPromotion } from "./modules/AppPromotion";
 import { Benefits } from "./modules/Benefits";
 import ContactInfo from "./modules/ContactInfo";
 import DeliveryTimeline from "./modules/DeliveryTimeline";
 import Faq from "./modules/Faq";
 import FollowSalbox from "./modules/FollowSalbox";
+import Galeria from "./modules/Galeria";
 import Hero from "./modules/Hero";
+import Menu from "./modules/Menu";
 import QualityWarranty from "./modules/QualityWarranty";
 import Register from "./modules/Register";
+import TableComparison from "./modules/TableComparison";
 import { Testimonials } from "./modules/Testomonials";
 
 function App() {
@@ -20,23 +25,33 @@ function App() {
     setPhoneNumber(value);
   };
 
-  console.log(phoneNumber);
+  // console.log(phoneNumber);
 
   return (
     <PlatinumLayout>
-      <Hero phoneNumber={phoneNumber} handlePhoneNumber={handlePhoneNumber} />
+      <Hero
+        phoneNumber={phoneNumber}
+        handlePhoneNumber={handlePhoneNumber}
+        registered={registered}
+        setRegistered={setRegistered}
+      />
       <Benefits />
       <AboutUs />
+      <Promotions />
+      <TableComparison />
       <DeliveryTimeline />
       <QualityWarranty />
+      <AppPromotion />
       <Testimonials />
       <Register
         phoneNumber={phoneNumber}
         handlePhoneNumber={handlePhoneNumber}
         registered={registered}
       />
+      <Menu />
       <FollowSalbox />
       <ContactInfo />
+      <Galeria />
       <Faq />
     </PlatinumLayout>
   );
