@@ -3,7 +3,7 @@ import { testimonials } from "../constants/testimonialsData";
 
 function Testimonials() {
   return (
-    <main className="bg-scarlet-400 p-6 py-9 text-center md:text-start lg:p-20">
+    <main id='testimonials' className="bg-scarlet-400 p-6 py-9 text-center md:text-start lg:p-20">
       <h4 className="font-bold text-xl uppercase text-scarlet-100">
         Testimonios
       </h4>

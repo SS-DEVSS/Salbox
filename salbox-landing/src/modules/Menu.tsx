@@ -32,7 +32,7 @@ const Menu = () => {
   }, []);
 
   return (
-    <main className="h-[100vh] flex flex-col">
+    <main id='menu' className="h-[100vh] flex flex-col">
       {/* Header Section (sticky at the top) */}
       <section className="bg-scarlet-400 pt-16 sticky top-0 z-10">
         <h2 className="text-white text-center text-[28px] md:text-[40px] font-bold px-6">
@@ -52,17 +52,15 @@ const Menu = () => {
             >
               <img
                 src={menuItem.image}
-                className={`${
-                  selectedItem !== menuItem.title && "opacity-60"
-                } w-8 md:w-16`}
+                className={`${selectedItem !== menuItem.title && "opacity-60"
+                  } w-8 md:w-16`}
                 alt={menuItem.title}
               />
               <p
-                className={`${
-                  selectedItem === menuItem.title
-                    ? "text-scarlet-500 underline"
-                    : "opacity-60"
-                } font-bold text-sm md:text-xl`}
+                className={`${selectedItem === menuItem.title
+                  ? "text-scarlet-500 underline"
+                  : "opacity-60"
+                  } font-bold text-sm md:text-xl`}
               >
                 {menuItem.title}
               </p>
@@ -85,9 +83,8 @@ const Menu = () => {
             >
               <img
                 src={category.image}
-                className={`${
-                  selectedItem !== category.title && "opacity-60"
-                } w-16 my-6`}
+                className={`${selectedItem !== category.title && "opacity-60"
+                  } w-16 my-6`}
                 alt={category.title}
               />
               <p className="font-bold text-xl">{category.title}</p>

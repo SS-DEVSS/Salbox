@@ -7,7 +7,7 @@ import Banners from "../components/Banners";
 
 const AboutUs = () => {
   return (
-    <div className="relative">
+    <div id='about-us' className="relative">
       <main className="relative bg-scarlet-400 flex flex-col text-center p-6 lg:flex-row lg:gap-10 lg:text-start lg:p-14 lg:pr-0">
         <section className="xl:basis-1/2 flex flex-col justify-center">
           <h1 className="font-bold text-white py-6 text-3xl md:text-[40px]">
