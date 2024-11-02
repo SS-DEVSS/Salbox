@@ -89,7 +89,6 @@ const FollowSalbox = () => {
       <div className="mx-auto w-[90%] lg:w-[80%] h-[300px] lg:h-[75vh] mb-8 lg:mb-0 bg-slate-300 rounded-xl">
         <APIProvider
           apiKey={GOOGLE_MAPS_API_KEY}
-          onLoad={() => console.log("Maps API has loaded.")}
         >
           {MemoizedMap()}
         </APIProvider>

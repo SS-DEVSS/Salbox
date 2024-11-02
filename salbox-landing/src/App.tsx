@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { BrowserRouter } from 'react-router-dom';
+import { app } from './config/firebase-config'
+import { getAuth, signInAnonymously } from '@firebase/auth';
+import { contactData } from './data/contactData';
 import Layout from "./components/Layouts/Layout";
 import Promotions from "./components/Promotions";
 import AboutUs from "./modules/AboutUs";
-import { AppPromotion } from "./modules/AppPromotion";
-import { Benefits } from "./modules/Benefits";
+import AppPromotion from "./modules/AppPromotion";
+import Benefits from "./modules/Benefits";
 import ContactInfo from "./modules/ContactInfo";
 import DeliveryTimeline from "./modules/DeliveryTimeline";
 import Faq from "./modules/Faq";
@@ -14,21 +18,28 @@ import Menu from "./modules/Menu";
 import QualityWarranty from "./modules/QualityWarranty";
 import Register from "./modules/Register";
 import TableComparison from "./modules/TableComparison";
-import { Testimonials } from "./modules/Testomonials";
-import { BrowserRouter } from 'react-router-dom';
+import Testimonials from "./modules/Testomonials";
 import WhatsAppButton from './components/WhatsAppButton';
-import { contactData } from './data/contactData';
 
 function App() {
   const [phoneNumber, setPhoneNumber] = useState<string | null>(null);
   const [registered, setRegistered] = useState<boolean>(false);
 
-  const handlePhoneNumber = (e: any) => {
-    const { value } = e.target;
+  const handlePhoneNumber = (e: React.FormEvent<HTMLFormElement>) => {
+    const value = e.target.value;
+    if (isNaN(value)) return;
     setPhoneNumber(value);
   };
 
-  // console.log(phoneNumber);
+
+  useEffect(() => {
+    const auth = getAuth(app)
+
+    signInAnonymously(auth).catch((error) => {
+      console.error("Anonymous authentication failed:", error);
+    })
+  }, [])
+
 
   return (
     <BrowserRouter>
@@ -51,6 +62,7 @@ function App() {
           phoneNumber={phoneNumber}
           handlePhoneNumber={handlePhoneNumber}
           registered={registered}
+          setRegistered={setRegistered}
         />
         <Menu />
         <FollowSalbox />

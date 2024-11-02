@@ -3,7 +3,7 @@ import SalboxAppPreview from "../assets/images/SalboxAppPreview.webp";
 import GooglePlayIcon from "../assets/images/GooglePlayIcon.png";
 import AppleIcon from "../assets/images/AppleIcon.png";
 
-export function AppPromotion() {
+function AppPromotion() {
   return (
     <div className="flex flex-col md:flex-row items-center justify-center md:gap-16 px-6 xl:px-20 2xl:px-40 overflow-hidden relative bg-white md:max-h-[900px] bg-grid-small-black/[0.2]">
       <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
@@ -106,3 +106,5 @@ export function AppPromotion() {
     </div>
   );
 }
+
+export default AppPromotion;

@@ -3,7 +3,7 @@ import FastDelivery from "../assets/icons/FastDelivery.png";
 import HealthyIcon from "../assets/icons/HealthyIcon.png";
 import SavingsIcon from "../assets/icons/SavingsIcon.png";
 
-export function Benefits() {
+function Benefits() {
   const cards = data.map((card, index) => (
     <Card key={card.src} card={card} index={index} />
   ));
@@ -47,3 +47,5 @@ const data = [
     src: SavingsIcon,
   },
 ];
+
+export default Benefits;
