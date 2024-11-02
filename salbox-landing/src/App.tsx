@@ -25,11 +25,9 @@ function App() {
   const [phoneNumber, setPhoneNumber] = useState<string | null>(null);
   const [registered, setRegistered] = useState<boolean>(false);
 
-  const handlePhoneNumber = (e: any) => {
-    const { value } = e.target;
-
+  const handlePhoneNumber = (e: React.FormEvent<HTMLFormElement>) => {
+    const value = e.target.value;
     if (isNaN(value)) return;
-
     setPhoneNumber(value);
   };
 
@@ -64,6 +62,7 @@ function App() {
           phoneNumber={phoneNumber}
           handlePhoneNumber={handlePhoneNumber}
           registered={registered}
+          setRegistered={setRegistered}
         />
         <Menu />
         <FollowSalbox />
