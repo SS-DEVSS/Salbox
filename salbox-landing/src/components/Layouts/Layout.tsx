@@ -1,11 +1,11 @@
 import Footer from "../Footer";
 import Header from "../Header";
 
-type PlatinumLayoutProps = {
+type LayoutProps = {
   children: React.ReactNode;
 };
 
-const PlatinumLayout = ({ children }: PlatinumLayoutProps) => {
+const Layout = ({ children }: LayoutProps) => {
   return (
     <div>
       <Header />
@@ -15,4 +15,4 @@ const PlatinumLayout = ({ children }: PlatinumLayoutProps) => {
   );
 };
 
-export default PlatinumLayout;
+export default Layout;

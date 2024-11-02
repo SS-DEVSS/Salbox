@@ -43,6 +43,10 @@ module.exports = {
           500: "#14AEC6",
         },
         white_smoke: "#F2F2F2",
+				whatsapp: {
+					'400': '#2dc264',
+					'500': '#25D366',
+				}
       },
       container: {
         center: "true",
@@ -90,6 +94,10 @@ module.exports = {
         sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
+				bounce: {
+					'0%, 100%': {transform: 'translateY(0)'},
+					'50%': {transform: 'translateY(-10px)'},
+				},
         "accordion-down": {
           from: {
             height: "0",
@@ -129,6 +137,8 @@ module.exports = {
         },
       },
       animation: {
+				bounce: 'bounce 0.6s ease-in-out',
+				'bounce-delay': 'bounce 0.6s ease-in-out 10s 10',
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         scroll:

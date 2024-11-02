@@ -21,7 +21,7 @@ const NavMobile = ({ toggleMenu }: { toggleMenu: () => void }) => {
               />
             </article>
           ))}
-          <Link to="https://catalogoplatinumdriveline.com" target="_blank">
+          <Link to="#" target="_blank">
             <article className="bg-naranja flex items-center px-3 py-3 gap-3 rounded-lg">
               <img className="w-8" src="/icons/webWhite.png" alt="email" />
               <p className="text-white">Visita el Catálogo Electrónico</p>
@@ -33,7 +33,7 @@ const NavMobile = ({ toggleMenu }: { toggleMenu: () => void }) => {
             <img src="/icons/email.png" alt="email" />
           </a>
           <a
-            href="https://www.facebook.com/PlatinumDrivelineMx/"
+            href="#"
             target="_blank"
           >
             <img src="/icons/facebookNaranja.png" alt="facebook" />
