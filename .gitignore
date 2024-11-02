@@ -59,5 +59,8 @@ google-services.json
 # Android Profiling
 *.hprof
 
+# Android Release
+release/
+
 # env
 .env
