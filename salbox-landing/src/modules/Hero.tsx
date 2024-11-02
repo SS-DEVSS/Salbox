@@ -1,7 +1,17 @@
 import { CheckCircle2 } from "lucide-react";
 import { Dispatch, useEffect, useState } from "react";
 import Confetti from "react-confetti";
+import { contactData } from '../data/contactData';
+import { addDoc, collection } from 'firebase/firestore';
+import { dbFirestore } from '../config/firebase-config';
 
+/**
+ * @typedef {Object} HeroProps
+ * @property {string | null} phoneNumber - The user's phone number.
+ * @property {function} handlePhoneNumber - Function to handle changes to the phone number input.
+ * @property {boolean} registered - Indicates if the user has registered.
+ * @property {function} setRegistered - Function to update the registration state.
+ */
 type HeroProps = {
   phoneNumber: string | null;
   handlePhoneNumber: any;
@@ -9,6 +19,12 @@ type HeroProps = {
   setRegistered: Dispatch<React.SetStateAction<boolean>>;
 };
 
+/**
+ * Hero component that displays a registration form and handles user registration.
+ *
+ * @param {HeroProps} props - The component props.
+ * @returns {JSX.Element} The rendered component.
+ */
 const Hero = ({
   phoneNumber,
   handlePhoneNumber,
@@ -17,10 +33,47 @@ const Hero = ({
 }: HeroProps) => {
   const [confetti, setConfetti] = useState(false);
 
+  /**
+ * Handles form submission, sets registration state, displays confetti,
+ * creates a customer document in Firestore, and redirects to WhatsApp.
+ *
+ * @param {Event} event - The form submission event.
+ */
   const handleForm = (event: any) => {
     event.preventDefault();
     setRegistered(true);
     setConfetti(true);
+    createCustomer()
+
+    setTimeout(() => {
+      redirectToWhatsApp()
+    }, 3000)
+  };
+
+  /**
+ * Creates a customer document in Firestore with the user's phone number.
+ *
+ * @async
+ * @returns {Promise<void>}
+ */
+  const createCustomer = async () => {
+    try {
+      await addDoc(collection(dbFirestore, 'customers'), {
+        phoneNumber,
+        createdAt: new Date(),
+      })
+    }
+    catch (error) {
+      console.log(error)
+    }
+  }
+
+  /**
+   * @function redirectToWhatsApp
+   * Redirects the user to WhatsApp with a predefined message.
+   */
+  const redirectToWhatsApp = () => {
+    window.open(`https://wa.me/${contactData.phoneNumber}?text=¡Hola!%20Quiero%20obtener%20el%20servicio%20de%20Salbox`);
   };
 
   useEffect(() => {
@@ -54,8 +107,7 @@ const Hero = ({
                 ¡Gracias por Registrarte!
               </h2>
               <p className="text-sm md:text-base md:w leading-8 md:leading-8">
-                Revisa tu whatsapp para descubir lo que Salbox tiene para
-                ofrecerte.
+                Te redireccionaremos al WhatsApp de Salbox ahora...
               </p>
             </div>
           </section>
@@ -71,6 +123,7 @@ const Hero = ({
                 />
                 <input
                   className="ml-8 text-base w-[160px] focus:outline-none bg-transparent"
+                  required={true}
                   type="text"
                   placeholder="0000000000"
                   maxLength={10}
@@ -87,7 +140,7 @@ const Hero = ({
             </form>
 
             {/* Form for desktop */}
-            <div className="hidden sm:flex items-center bg-white rounded-full py-1 px-1">
+            <div className="hidden sm:flex items-center bg-white rounded-full py-3 px-2">
               <img
                 className="w-6 h-6 ml-5"
                 src="icons/IconWhatsapp.png"
@@ -101,9 +154,10 @@ const Hero = ({
                   maxLength={10}
                   value={phoneNumber ? phoneNumber : ""}
                   onChange={handlePhoneNumber}
+                  required={true}
                 />
                 <input
-                  className="bg-scarlet-400 text-white text-lg font-semibold rounded-full border-none px-16 py-2"
+                  className="bg-scarlet-400 hover:bg-scarlet-500 transition-colors text-white text-lg font-semibold rounded-full border-none px-16 py-2 cursor-pointer"
                   type="submit"
                   value="Enviar"
                 />
@@ -127,7 +181,6 @@ const Hero = ({
       </section>
       <div className="hidden lg:block mx-auto basis-1/2">
         <img
-          //   className="h-[700px]"
           src="illustrations/HeroIllustration.svg"
           alt="Hero Image"
         />

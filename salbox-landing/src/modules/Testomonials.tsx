@@ -1,7 +1,7 @@
 import { InfiniteMovingCards } from "../components/ui/infinite-moving-cards";
 import { testimonials } from "../constants/testimonialsData";
 
-export function Testimonials() {
+function Testimonials() {
   return (
     <main className="bg-scarlet-400 p-6 py-9 text-center md:text-start lg:p-20">
       <h4 className="font-bold text-xl uppercase text-scarlet-100">
@@ -20,3 +20,5 @@ export function Testimonials() {
     </main>
   );
 }
+
+export default Testimonials;
