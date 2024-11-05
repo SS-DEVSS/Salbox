@@ -1,0 +1,85 @@
+body {
+  box-sizing: border-box;
+  margin: auto;
+  padding: auto;
+  position: relative;
+  font-family: "Numans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  overflow: hidden;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  background-color: #14AEC6;
+  overflow: hidden;
+}
+
+.messages {
+  padding: 0 30px;
+  min-width: 180px;
+}
+
+.message {
+  text-align: left;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: white;
+  margin: 0;
+}
+
+.message-2 {
+  text-align: left;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: white;
+  line-height: 1.6rem;
+  margin: 0;
+  margin-bottom: 40px;
+}
+
+.special-text {
+  font-weight: 900;
+  text-decoration: underline;
+}
+
+.driver {
+  width: 80%;
+  max-width: 250px;
+}
+
+.logo {
+  width: 120px;
+  height: fit-content;
+  position: absolute;
+  bottom: 10px;
+  right: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media (min-width: 600px) {
+  .container {
+    display: grid;
+    grid-template-columns: 60% 40%;
+  }
+  .messages {
+    padding-left: 10%;
+    width: 90%;
+  }
+  .message {
+    font-size: 3rem;
+  }
+  .message-2 {
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+  }
+  .driver {
+    max-width: 500px;
+    width: 80%;
+  }
+}
