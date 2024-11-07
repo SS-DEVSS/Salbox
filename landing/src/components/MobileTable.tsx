@@ -11,7 +11,7 @@ import {
 } from "@tanstack/react-table";
 
 import { Table, TableBody, TableCell, TableHeader, TableRow } from "./ui/table";
-import { CheckCircle2, ChevronDown, XCircle } from "lucide-react";
+import { CheckCircle2, XCircle } from "lucide-react";
 
 const data = [
   {

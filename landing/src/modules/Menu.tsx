@@ -3,12 +3,12 @@ import { foodMenuData } from "../data/foodMenuData";
 
 const Menu = () => {
   const [selectedItem, setSelectedItem] = useState(foodMenuData[0].title);
-  const sectionsRefs = useRef([]);
+  const sectionsRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   // Scroll to the selected section when a category is clicked
   const handleCategoryClick = (title: string, index: number) => {
     setSelectedItem(title);
-    sectionsRefs.current[index].scrollIntoView({
+    sectionsRefs.current[index]?.scrollIntoView({
       behavior: "smooth",
       block: "start",
     });
@@ -18,10 +18,12 @@ const Menu = () => {
   useEffect(() => {
     const handleScroll = () => {
       sectionsRefs.current.forEach((section, index) => {
-        const rect = section.getBoundingClientRect();
-        // Detect when the section is halfway visible on the screen
-        if (rect.top >= 0 && rect.top < window.innerHeight / 2) {
-          setSelectedItem(foodMenuData[index].title);
+        if (section) {
+          const rect = section.getBoundingClientRect();
+          // Detect when the section is halfway visible on the screen
+          if (rect.top >= 0 && rect.top < window.innerHeight / 2) {
+            setSelectedItem(foodMenuData[index].title);
+          }
         }
       });
     };
