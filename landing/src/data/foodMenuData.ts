@@ -174,7 +174,7 @@ export const restaurantMenu: MenuCategory[] = [
   },
   {
     title: "Lo dulce",
-    image: ChilaquilesIcon,
+    image: SweetIcon,
     description: "Homemade desserts perfect for sharing",
     itemIds: ["pastaBolognesa"],
   },
