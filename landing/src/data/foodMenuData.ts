@@ -1,7 +1,12 @@
-import PaniniIcon from "../assets/images/PaniniIcon.png";
-import PastaIcon from "../assets/images/SpaghettiIcon.png";
-import ChilaquilesIcon from "../assets/images/ChilaquilesIcon.png";
+import PaniniIcon from "../assets/images/PANINIS.png";
+import PastaIcon from "../assets/images/PASTAS.png";
+import ChilaquilesIcon from "../assets/images/CHILAQUILES.png";
+import SweetIcon from "../assets/images/LO DULCE.png"
+
 import PastaTop from "../assets/images/PastaTest.webp";
+import PaniniCochinitaImage from "../assets/images/Menu/1.png"
+import PaniniPolloImage from "../assets/images/Menu/3.png"
+import PaniniJamonImage from "../assets/images/Menu/5.png"
 
 /**
  * Menu type constants for the application
@@ -83,6 +88,33 @@ export const foodItems: Record<string, FoodItem> = {
     price: 100,
     vegetarian: false,
   },
+  paniniCochinita: {
+    id: "paniniCochinita",
+    title: "Panini de Cochinita Pibil",
+    image: PaniniCochinitaImage,
+    description:
+      "Panini de cochinita pibil con cebollitas.",
+    price: 120,
+    vegetarian: false,
+  },
+  paniniPollo: {
+    id: "paniniPollo",
+    title: "Panini de Pollo",
+    image: PaniniPolloImage,
+    description:
+      "Panini de carnes pollo con jitomate y lechuga.",
+    price: 120,
+    vegetarian: false,
+  },
+  paniniJamon: {
+    id: "paniniJamon",
+    title: "Panini de Jamón",
+    image: PaniniJamonImage,
+    description:
+      "Panini de jamón de pechuga de pavo con jitomate y lechuga.",
+    price: 120,
+    vegetarian: false,
+  },
 };
 
 /**
@@ -94,7 +126,7 @@ export const deliveryMenu: MenuCategory[] = [
     title: "Paninis",
     image: PaniniIcon,
     description: "Delicious Italian sandwiches with various fillings",
-    itemIds: ["pastaBolognesa",],
+    itemIds: [foodItems.paniniCochinita.id, foodItems.paniniJamon.id, foodItems.paniniPollo.id],
   },
   {
     title: "Pastas",
@@ -110,7 +142,7 @@ export const deliveryMenu: MenuCategory[] = [
   },
   {
     title: "Lo dulce",
-    image: ChilaquilesIcon,
+    image: SweetIcon,
     description: "Sweet treats and desserts",
     itemIds: ["pastaBolognesa"],
   },
@@ -126,7 +158,7 @@ export const restaurantMenu: MenuCategory[] = [
     title: "Paninis",
     image: PaniniIcon,
     description: "Served hot with a side of fresh greens",
-    itemIds: ["pastaBolognesa", "pastaBolognesa2", "pastaBolognesa3"],
+    itemIds: [foodItems.paniniCochinita.id, foodItems.paniniJamon.id, foodItems.paniniPollo.id],
   },
   {
     title: "Pastas",
