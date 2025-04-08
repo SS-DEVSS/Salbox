@@ -3,7 +3,6 @@ import ObjectiveIcon from "../assets/icons/ObjectiveIcon.png";
 import VisionIcon from "../assets/icons/VisionIcon.png";
 import AboutUsImg from "../assets/images/AboutUs.jpg";
 import AboutUsCard from "../components/AboutUsCard";
-import Banners from "../components/Banners";
 
 const AboutUs = () => {
   return (
@@ -41,9 +40,6 @@ const AboutUs = () => {
           alt="salbox about us"
         />
       </section>
-      <div className="mb-20 lg:mb-32">
-        <Banners text={"Nuestros Combos"} />
-      </div>
     </div>
   );
 };

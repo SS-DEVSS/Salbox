@@ -14,7 +14,7 @@ import Faq from "./modules/Faq";
 import FollowSalbox from "./modules/FollowSalbox";
 import Galeria from "./modules/Galeria";
 import Hero from "./modules/Hero";
-import Menu from "./modules/Menu";
+import Menu from "./modules/Menu/Menu";
 import QualityWarranty from "./modules/QualityWarranty";
 import Register from "./modules/Register";
 import TableComparison from "./modules/TableComparison";
