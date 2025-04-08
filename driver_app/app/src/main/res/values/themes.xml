@@ -1,0 +1,20 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.SalboxDriverApp" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary Color. -->
+         <item name="colorPrimary">@color/blue</item>
+         <item name="colorPrimaryVariant">@color/blue_100</item>
+        <!-- Secondary Color. -->
+         <item name="colorSecondary">@color/gray</item>
+        <!-- Accent Color. -->
+         <item name="colorAccent">@color/red</item>
+        <!-- Font Color. -->
+         <item name="android:textColor">@color/black</item>
+        <!-- Status Bar Color. -->
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <!-- Explicitly disable the action bar -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.SalboxDriverApp" parent="Base.Theme.SalboxDriverApp" />
+</resources>

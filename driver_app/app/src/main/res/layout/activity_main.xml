@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context=".ui.view.MainActivity">
+
+    <!--TEXT VIEW-->
+    <TextView
+        android:id="@+id/live_location_text"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.65"
+        android:layout_height="wrap_content"
+        android:text="@string/live_location_text"
+        android:textSize="36sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <!--STATUS CHIPS-->
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/active_location_status_chip"
+        style="@style/Theme.SalboxDriverApp.ChipGroup"
+        app:layout_constraintTop_toBottomOf="@id/live_location_text"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="visible">
+
+        <com.google.android.material.chip.Chip
+            style="@style/Theme.SalboxDriverApp.ChipStatus.blue"
+            android:text="@string/active"/>
+    </com.google.android.material.chip.ChipGroup>
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/inactive_location_status_chip"
+        style="@style/Theme.SalboxDriverApp.ChipGroup"
+        app:layout_constraintTop_toBottomOf="@id/live_location_text"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="invisible">
+
+        <com.google.android.material.chip.Chip
+            style="@style/Theme.SalboxDriverApp.ChipStatus.red"
+            android:text="@string/inactive"/>
+    </com.google.android.material.chip.ChipGroup>
+
+
+    <!--LOCATION BUTTONS-->
+    <Button
+        android:id="@+id/share_live_location_button"
+        style="@style/Theme.SalboxDriverApp.Button.blue"
+        android:text="@string/share_live_location"
+        app:icon="@drawable/baseline_check_circle_24"
+        app:layout_constraintBottom_toTopOf="@id/salbox_logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/stop_live_location_button"
+        style="@style/Theme.SalboxDriverApp.Button.gray"
+        android:text="@string/stop_share_live_location"
+        app:icon="@drawable/baseline_cancel_24"
+        app:layout_constraintBottom_toTopOf="@id/salbox_logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="visible"/>
+
+    <!--LOGO-->
+    <ImageView
+        android:id="@+id/salbox_logo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:contentDescription="@string/salbox_logo_alt"
+        android:src="@drawable/salbox_logo_font_red"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
