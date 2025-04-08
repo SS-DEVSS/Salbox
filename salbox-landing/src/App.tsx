@@ -25,8 +25,6 @@ function App() {
     setPhoneNumber(value);
   };
 
-  // console.log(phoneNumber);
-
   return (
     <PlatinumLayout>
       <Hero
@@ -35,10 +33,12 @@ function App() {
         registered={registered}
         setRegistered={setRegistered}
       />
+      <FollowSalbox />
       <Benefits />
-      <AboutUs />
-      <Promotions />
       <TableComparison />
+      <AboutUs />
+      <Menu />
+      <Promotions />
       <DeliveryTimeline />
       <QualityWarranty />
       <AppPromotion />
@@ -48,8 +48,6 @@ function App() {
         handlePhoneNumber={handlePhoneNumber}
         registered={registered}
       />
-      <Menu />
-      <FollowSalbox />
       <ContactInfo />
       <Galeria />
       <Faq />

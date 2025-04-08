@@ -36,14 +36,17 @@ const Hero = ({
       {confetti && <Confetti />}
       <section className="flex flex-col items-center text-center lg:items-start lg:text-left lg:basis-1/2 m-0">
         <h1 className="text-3xl sm:text-[40px] xl:text-[52px] leading-[70px] font-semibold text-white_smoke">
-          ¿Ya te brindamos servicio?
+          ¿Con hambre y sin tiempo?
         </h1>
         <h1 className="text-3xl sm:text-[40px] xl:text-[52px] mt-2 md:mt-6 font-black text-white">
           ¡Conoce Salbox!
         </h1>
         <p className="text-base text-white_smoke my-10 leading-8 mx-0 md:mx-20 lg:mx-0">
-          La nueva manera de comer rapido, accesible, fresco y delicioso! Solo
-          escribe tu whatsapp y salbox llegara a ti! Conoce nuestro menu!
+          Comida fresca de calidad, precios justos y entrega sin costo de envío.
+          ¿Qué más quieres?
+        </p>
+        <p className="text-base text-white_smoke my-10 leading-8 mx-0 md:mx-20 lg:mx-0">
+          Deja tu whatsapp aquí
         </p>
 
         {registered ? (
@@ -111,19 +114,6 @@ const Hero = ({
             </div>
           </>
         )}
-
-        <div className="flex mt-32">
-          <img
-            className="w-16"
-            src="icons/IconFacebook.png"
-            alt="Instagram Icon"
-          />
-          <img
-            className="w-16"
-            src="icons/IconInstagram.png"
-            alt="Facebook Icon"
-          />
-        </div>
       </section>
       <div className="hidden lg:block mx-auto basis-1/2">
         <img

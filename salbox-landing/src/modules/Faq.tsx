@@ -9,75 +9,65 @@ import {
 
 const Faq = () => {
   return (
-    <div className="flex flex-col mt-10 md:my-20 lg:flex-row md:gap-6 lg:pr-20">
+    <section className="flex flex-col mt-10 md:my-20 lg:flex-row md:gap-6 lg:pr-20">
       <img
         src={AboutUsImg}
-        className="hidden lg:block rounded-r-2xl object-cover w-[45%] max-h-[550px]"
+        className="hidden lg:block rounded-r-2xl object-cover w-[45%] max-h-[400px]"
         alt="salbox about us"
       />
       <section className="basis-[55%]">
         <h2 className="text-center lg:text-start ml-4 text-[28px] md:text-[40px] font-bold px-6">
-          Preguntas Frecuentes
+          Preguntas Frecuentes FAQ
         </h2>
         <p className="text-center lg:text-start ml-4 mt-5 md:w-full mx-auto text-sm md:text-base leading-8 md:leading-[35px] mb-8 px-6">
-          Vea que preguntas frecuentes realizan nuestros clientes, para
-          cualquier otra duda puede comunicarse vía redes sociales, correo
-          electrónico o teléfono.
+          ¿Tienes alguna duda de como funciona nuestro servicio? ¡Encuentrala
+          aqui!
         </p>
 
         <Accordion
           defaultValue="item-1"
           type="single"
           collapsible
-          className="w-full px-6 mb-8"
+          className="w-full px-6 mb-8 text-start"
         >
           <AccordionItem value="item-1">
-            <AccordionTrigger>Is it accessible?</AccordionTrigger>
+            <AccordionTrigger>
+              ¿Cómo hago un pedido para SalboxGo
+            </AccordionTrigger>
             <AccordionContent>
-              Yes. It adheres to the WAI-ARIA design pattern.
+              Con SalboxGo, no tienes que hacer ningun pedido! Simplemente
+              accede a la app, ve nuestro mapa, identifica la ubicacion en
+              tiempo real de nuestro SalboxGo, y solicita del servicio con un
+              solo click! ¡Facil, rapido y sin costos de envio!
             </AccordionContent>
           </AccordionItem>
           <hr className="mx-4" />
           <AccordionItem value="item-2">
-            <AccordionTrigger>Is it styled?</AccordionTrigger>
+            <AccordionTrigger className="text-start">
+              ¿Si quiero pedir productos para cierta hora en especifico, puedo
+              pedirlo con SalboxGo?
+            </AccordionTrigger>
             <AccordionContent>
-              Yes. It comes with default styles that matches the other
-              components&apos; aesthetic.
+              No. Las rutas SalboxGo van dependiendo la demanda. Abre la app,
+              checa la ruta más cercana y esperanos que pronto estaremos por tus
+              rumbos!
             </AccordionContent>
           </AccordionItem>
           <hr className="mx-4" />
           <AccordionItem value="item-3">
-            <AccordionTrigger>Is it animated?</AccordionTrigger>
+            <AccordionTrigger>
+              ¿Puedo pedir de sucursal directo sin costo de envío?
+            </AccordionTrigger>
             <AccordionContent>
-              Yes. It&apos;s animated by default, but you can disable it if you
-              prefer.
-            </AccordionContent>
-          </AccordionItem>
-          <hr className="mx-4" />
-          <AccordionItem value="item-4">
-            <AccordionTrigger>Is it animated?</AccordionTrigger>
-            <AccordionContent>
-              Yes. It&apos;s animated by default, but you can disable it if you
-              prefer.
-            </AccordionContent>
-          </AccordionItem>
-          <AccordionItem value="item-5">
-            <AccordionTrigger>Is it animated?</AccordionTrigger>
-            <AccordionContent>
-              Yes. It&apos;s animated by default, but you can disable it if you
-              prefer.
-            </AccordionContent>
-          </AccordionItem>
-          <AccordionItem value="item-6">
-            <AccordionTrigger>Is it animated?</AccordionTrigger>
-            <AccordionContent>
-              Yes. It&apos;s animated by default, but you can disable it if you
-              prefer.
+              Si! Si tu sucursal más cercana Salbox está a menos de 2 km, el
+              pedido arriba de 200 pesos es gratis! Si estás más lejos de 2km,
+              el envío tendra un costo mínimo! Nada que ver con los costos
+              excesivos de plataformas
             </AccordionContent>
           </AccordionItem>
         </Accordion>
       </section>
-    </div>
+    </section>
   );
 };
 

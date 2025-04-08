@@ -8,38 +8,38 @@ import { Table, TableBody, TableCell, TableHeader, TableRow } from "./ui/table";
 
 const data = [
   {
-    salbox: "-30 min",
-    competencia1: "40+ min",
-    competencia2: "35+ min",
+    SalboxGo: "En Ruta",
+    competencia1: "30+ min",
+    competencia2: "45+ min",
   },
   {
-    salbox: "check",
-    competencia1: "--",
-    competencia2: "--",
+    SalboxGo: "Menos de $120 pp",
+    competencia1: "+150 pp",
+    competencia2: "+150 pp",
   },
   {
-    salbox: "$180 pp",
-    competencia1: "$280 pp",
-    competencia2: "$250 pp",
+    SalboxGo: "Sin costo de Envío",
+    competencia1: "+ $35",
+    competencia2: "+ $45",
   },
   {
-    salbox: "check",
-    competencia1: "close",
-    competencia2: "close",
+    SalboxGo: "Contenedores 100% Biodegradables",
+    competencia1: "Contenedores PLA",
+    competencia2: "Contenedores Unicel",
   },
   {
-    salbox: "check",
-    competencia1: "close",
-    competencia2: "close",
+    SalboxGo: "100% personalizada",
+    competencia1: "Intermediarios",
+    competencia2: "Intermediarios",
   },
 ];
 
 export const columns = [
   {
-    accessorKey: "salbox",
-    header: "Salbox",
+    accessorKey: "SalboxGo",
+    header: "SalboxGo",
     cell: ({ row }: { row: any }) => {
-      const value = row.getValue("salbox");
+      const value = row.getValue("SalboxGo");
       return (
         <div className="text-center flex justify-center p-2 py-4 rounded-none">
           {value === "check" ? (
@@ -105,7 +105,7 @@ export function DataTableValues() {
           <TableHeader className="bg-white text-base">
             <tr>
               <th className="text-center py-4 bg-moonstone-400 text-white font-bold">
-                Salbox
+                SalboxGo
               </th>
               <th className="text-center py-4">Competencia 1</th>
               <th className="text-center py-4">Competencia 2</th>
@@ -117,7 +117,7 @@ export function DataTableValues() {
               return (
                 <TableRow
                   key={row.id}
-                  className={`bg-white text-base ${
+                  className={`bg-white text-sm ${
                     isLastRow ? "rounded-b-md" : ""
                   }`}
                 >

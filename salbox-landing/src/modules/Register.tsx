@@ -16,11 +16,10 @@ const Register = ({
       {!registered ? (
         <section className="flex flex-col items-center lg:items-start">
           <h2 className="text-3xl lg:text-[40px] font-semibold text-white">
-            Regístrate Para pedir Salbox
+            !Registrate para pedir Salbox!
           </h2>
           <p className="my-4 text-sm md:text-base md:w text-white leading-8 md:leading-8 md:my-8">
-            Neque porro quisquam est qui dolorem ipsum quia dolor sit amet,
-            consectetur, adipisci velit Neque porro quisquam.
+            ¡Escribe tu whatsapp y en seguida recibiras nuestro menu!
           </p>
           {/* Form for mobile */}
           <form className="flex items-center mb-5 sm:hidden">
