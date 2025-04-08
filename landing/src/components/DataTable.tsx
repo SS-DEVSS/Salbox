@@ -16,27 +16,30 @@ const data = [
   {
     image: FastDelivery,
     title: "Velocidad de Entrega",
-    description: "Etiam non maximus ipsum, at ullamcorper nibh.",
+    description:
+      "Entrega única con nuestro sistema automatico de entrega por rutas de envío on demand.",
   },
   {
     image: FoodBalancedDiet,
-    title: "Variedad de Platillos",
-    description: "Etiam non maximus ipsum, at ullamcorper nibh.",
+    title: "Costo de los Platillos",
+    description: "Precios accesibles y justos siempre en Salbox.",
   },
   {
     image: SavingsIcon,
-    title: "Costo",
-    description: "Etiam non maximus ipsum, at ullamcorper nibh.",
+    title: "Costo de Envio",
+    description: "Lo más rico, ¡Sin costo de envío!.",
   },
   {
     image: PlanetEarthSustainability,
     title: "Sostenibilidad",
-    description: "Etiam non maximus ipsum, at ullamcorper nibh.",
+    description:
+      "Tus comidas, elaboradas y empacadas con contenedores 100% biodegradables.",
   },
   {
     image: CustomerServiceIcon,
     title: "Atención al Cliente",
-    description: "Etiam non maximus ipsum, at ullamcorper nibh.",
+    description:
+      "Consideramos tanto el pedido como el tiempo de nuestros clientes para brindar el mejor servicio.",
   },
 ];
 
@@ -56,7 +59,9 @@ export const columns = [
           </div>
           <div>
             <div className="font-semibold text-xl text-left">{title}</div>
-            <div className="text-base text-[#93909C] mt-1">{description}</div>
+            <div className="text-base text-xs text-[#93909C] mt-1">
+              {description}
+            </div>
           </div>
         </div>
       );

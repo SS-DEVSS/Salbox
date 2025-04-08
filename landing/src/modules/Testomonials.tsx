@@ -8,7 +8,7 @@ function Testimonials() {
         Testimonios
       </h4>
       <h1 className="font-bold text-white py-6 text-[28px] md:text-[40px] leading-[50px]">
-        Vea que dicen nuestros clientes <br></br> sobre nosotros!
+        Nuestros clientes hablan por si solos
       </h1>
       <div className="flex flex-col antialiased items-center justify-center relative overflow-hidden mt-5 lg:mt-10">
         <InfiniteMovingCards

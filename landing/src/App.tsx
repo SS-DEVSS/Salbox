@@ -50,10 +50,12 @@ function App() {
           registered={registered}
           setRegistered={setRegistered}
         />
+        <FollowSalbox />
         <Benefits />
-        <AboutUs />
-        <Promotions />
         <TableComparison />
+        <AboutUs />
+        <Menu />
+        <Promotions />
         <DeliveryTimeline />
         <QualityWarranty />
         <AppPromotion />
@@ -64,8 +66,6 @@ function App() {
           registered={registered}
           setRegistered={setRegistered}
         />
-        <Menu />
-        <FollowSalbox />
         <ContactInfo />
         <Galeria />
         <Faq />

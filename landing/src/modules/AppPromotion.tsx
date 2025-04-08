@@ -16,12 +16,7 @@ function AppPromotion() {
             <h1 className="text-4xl md:text-[6rem] font-bold mt-5 leading-none">
               Salbox Go App
             </h1>
-            <p className="mt-6 text-base leading-9">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem,
-              sapiente. Sapiente maiores, officia vel ratione accusantium sed
-              ullam labore nisi? Tempora illum possimus facere consequatur iusto
-              magni dolorem veritatis alias.
-            </p>
+            <p className="mt-6 text-base leading-9">!Esperalo muy pronto!</p>
           </div>
         }
       >
@@ -69,12 +64,7 @@ function AppPromotion() {
         <h1 className="text-7xl xl:text-[6rem] font-bold mt-1 leading-none">
           Salbox Go App
         </h1>
-        <p className="mt-6 text-base leading-9">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem,
-          sapiente. Sapiente maiores, officia vel ratione accusantium sed ullam
-          labore nisi? Tempora illum possimus facere consequatur iusto magni
-          dolorem veritatis alias.
-        </p>
+        <p className="mt-6 text-base leading-9">!Esperalo muy pronto!</p>
         <h3 className="font-bold text-lg my-6">
           ¿En dondé la podré encontrar?
         </h3>
