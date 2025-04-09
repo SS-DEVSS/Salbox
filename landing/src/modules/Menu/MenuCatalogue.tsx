@@ -4,7 +4,7 @@ import CategoryItems from './CategoryItems'
 interface MenuCatalogueProps {
   menuData: MenuCategory[]
   selectedItem: string
-  sectionsRefs: React.RefObject<HTMLDivElement[]>
+  sectionsRefs: React.MutableRefObject<(HTMLDivElement | null)[]>
   handleCategoryClick: (title: string, index: number) => void
 }
 

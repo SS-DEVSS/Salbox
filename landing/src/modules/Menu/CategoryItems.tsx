@@ -5,14 +5,14 @@ interface CategoryItemsProps {
   index: number
   category: MenuCategory
   selectedItem: string
-  sectionsRefs: React.RefObject<HTMLDivElement[]>
+  sectionsRefs: React.MutableRefObject<(HTMLDivElement | null)[]>
   handleCategoryClick: (title: string, index: number) => void
 }
 
 const CategoryItems = ({ index, category, selectedItem, sectionsRefs, handleCategoryClick }: CategoryItemsProps) => {
   return (
     <div
-      ref={(el) => (sectionsRefs.current[index] = el)}
+      ref={(el) => ((sectionsRefs && sectionsRefs.current && sectionsRefs.current[index] && el) ? sectionsRefs.current[index] = el : undefined)}
       key={category.title}
       data-category={category.title}
       className="px-4 md:px-16 xl:px-32 pt-4 md:pt-8"

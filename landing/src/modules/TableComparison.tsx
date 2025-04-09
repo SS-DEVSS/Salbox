@@ -1,5 +1,3 @@
-import { DataTable } from "../components/DataTable";
-import { DataTableValues } from "../components/DataTableValues";
 import MobileTable from "../components/MobileTable";
 import { BackgroundBeams } from "../components/ui/background-beams";
 
