@@ -1,6 +1,6 @@
 function Header() {
   return (
-    <div className="bg-moonstone-500 flex items-center justify-between px-20 py-9">
+    <div className="bg-moonstone-500 flex items-center justify-between px-6 py-5 lg:px-20 lg:py-9">
       <img src="SalboxLOGO.svg" alt="Salbox Logo" />
       <nav className="hidden xl:block">
         <ul className="text-moonstone-100 flex gap-10">
