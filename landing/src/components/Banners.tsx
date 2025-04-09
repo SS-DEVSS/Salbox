@@ -1,4 +1,4 @@
-import PaniniIcon from "../assets/images/PaniniIcon.png";
+import SalboxIcon from "../assets/images/combos_logo.png";
 
 type BannersProps = {
   text: string;
@@ -12,19 +12,19 @@ const Banners = ({ text }: BannersProps) => {
         <p className="font-bold text-[24px] lg:text-[44px] text-white_smoke whitespace-nowrap">
           {text}
         </p>
-        <img className="w-12 lg:w-20 mx-8 lg:mx-12" src={PaniniIcon} />
+        <img className="w-12 lg:w-20 mx-8 lg:mx-12" src={SalboxIcon} />
         <p className="font-bold text-[24px] lg:text-[44px] text-white_smoke whitespace-nowrap">
           {text}
         </p>
-        <img className="w-12 lg:w-20 mx-8 lg:mx-12" src={PaniniIcon} />
+        <img className="w-12 lg:w-20 mx-8 lg:mx-12" src={SalboxIcon} />
         <p className="font-bold text-[24px] lg:text-[44px] text-white_smoke whitespace-nowrap">
           {text}
         </p>
-        <img className="w-12 lg:w-20 mx-8 lg:mx-12" src={PaniniIcon} />
+        <img className="w-12 lg:w-20 mx-8 lg:mx-12" src={SalboxIcon} />
         <p className="font-bold text-[24px] lg:text-[44px] text-white_smoke whitespace-nowrap">
           {text}
         </p>
-        <img className="w-12 lg:w-20 mx-8 lg:mx-12" src={PaniniIcon} />
+        <img className="w-12 lg:w-20 mx-8 lg:mx-12" src={SalboxIcon} />
       </div>
 
       {/* Second Banner */}
@@ -32,19 +32,19 @@ const Banners = ({ text }: BannersProps) => {
         <p className="font-bold text-[24px] lg:text-[44px] text-white_smoke whitespace-nowrap">
           {text}
         </p>
-        <img className="w-12 lg:w-20 mx-8 lg:mx-12" src={PaniniIcon} />
+        <img className="w-12 lg:w-20 mx-8 lg:mx-12" src={SalboxIcon} />
         <p className="font-bold text-[24px] lg:text-[44px] text-white_smoke whitespace-nowrap">
           {text}
         </p>
-        <img className="w-12 lg:w-20 mx-8 lg:mx-12" src={PaniniIcon} />
+        <img className="w-12 lg:w-20 mx-8 lg:mx-12" src={SalboxIcon} />
         <p className="font-bold text-[24px] lg:text-[44px] text-white_smoke whitespace-nowrap">
           {text}
         </p>
-        <img className="w-12 lg:w-20 mx-8 lg:mx-12" src={PaniniIcon} />
+        <img className="w-12 lg:w-20 mx-8 lg:mx-12" src={SalboxIcon} />
         <p className="font-bold text-[24px] lg:text-[44px] text-white_smoke whitespace-nowrap">
           {text}
         </p>
-        <img className="w-12 lg:w-20 mx-8 lg:mx-12" src={PaniniIcon} />
+        <img className="w-12 lg:w-20 mx-8 lg:mx-12" src={SalboxIcon} />
       </div>
     </main>
   );
