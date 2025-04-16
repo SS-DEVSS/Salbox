@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter } from 'react-router-dom';
-import { app } from './config/firebase-config'
-import { getAuth, signInAnonymously } from '@firebase/auth';
-import { contactData } from './data/contactData';
+import { BrowserRouter } from "react-router-dom";
+import { app } from "./config/firebase-config";
+import { getAuth, signInAnonymously } from "@firebase/auth";
+import { contactData } from "./data/contactData";
 import Layout from "./components/Layouts/Layout";
 import Promotions from "./components/Promotions";
 import AboutUs from "./modules/AboutUs";
@@ -19,7 +19,7 @@ import QualityWarranty from "./modules/QualityWarranty";
 import Register from "./modules/Register";
 import TableComparison from "./modules/TableComparison";
 import Testimonials from "./modules/Testomonials";
-import WhatsAppButton from './components/WhatsAppButton';
+import WhatsAppButton from "./components/WhatsAppButton";
 
 function App() {
   const [phoneNumber, setPhoneNumber] = useState<string | null>(null);
@@ -31,15 +31,13 @@ function App() {
     setPhoneNumber(value);
   };
 
-
   useEffect(() => {
-    const auth = getAuth(app)
+    const auth = getAuth(app);
 
     signInAnonymously(auth).catch((error) => {
       console.error("Anonymous authentication failed:", error);
-    })
-  }, [])
-
+    });
+  }, []);
 
   return (
     <BrowserRouter>
@@ -51,13 +49,12 @@ function App() {
           setRegistered={setRegistered}
         />
         <FollowSalbox />
-        <Benefits />
         <TableComparison />
+        <Benefits />
         <AboutUs />
         <Menu />
         <Promotions />
         <DeliveryTimeline />
-        <QualityWarranty />
         <AppPromotion />
         <Testimonials />
         <Register

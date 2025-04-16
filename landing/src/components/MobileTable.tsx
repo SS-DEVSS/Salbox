@@ -141,7 +141,7 @@ export default function MobileData() {
     <div className="w-full text-black">
       <div>
         <Table>
-          <TableHeader className="bg-scarlet-100">
+          <TableHeader className="bg-moonstone-400">
             <tr className="text-center">
               <th className="py-4 px-8 text-left"></th>
               <th className="py-4 px-8 bg-moonstone-400 text-white">Salbox</th>
@@ -151,7 +151,7 @@ export default function MobileData() {
           </TableHeader>
           <TableBody className="bg-white_smoke">
             {table.getRowModel().rows.map((row) => (
-              <TableRow className="border-red-200" key={row.id}>
+              <TableRow className="border-slate-300" key={row.id}>
                 {row.getVisibleCells().map((cell, cellIndex) => (
                   <TableCell
                     key={cell.id}

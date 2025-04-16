@@ -27,10 +27,6 @@ const TableComparison = () => {
         <div className="max-w-[1440px] px-10 mx-auto">
           <MobileTable />
         </div>
-        {/* <div className="hidden lg:flex max-w-[1440px] px-10 mx-auto">
-          <DataTable />
-          <DataTableValues />
-        </div> */}
       </div>
     </section>
   );
