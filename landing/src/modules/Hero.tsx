@@ -2,7 +2,6 @@ import { CheckCircle2 } from "lucide-react";
 import { Dispatch, useEffect, useState } from "react";
 import Confetti from "react-confetti";
 import RegisterForm from "../components/RegisterForm";
-
 import HeroImage from "../assets/images/HeroImage.png";
 
 /**
@@ -42,20 +41,20 @@ const Hero = ({
   }, [confetti]);
 
   return (
-    <main className="bg-moonstone-500 flex items-center px-6 lg:px-12 xl:px-20 xl:pr-0 min-h-[75vh]">
+    <section className="bg-[url(illustrations/1.png)] flex items-center bg-cover px-6 lg:px-12 xl:px-20 xl:pr-0 h-[100vh] text-black">
       {confetti && <Confetti />}
       <section className="flex flex-col items-center text-center lg:items-start lg:text-left lg:basis-1/2 m-0">
-        <h1 className="text-3xl sm:text-[40px] xl:text-[60px] leading-[70px] font-semibold text-white_smoke">
+        <h1 className="text-3xl sm:text-[40px] xl:text-[60px] leading-[70px] font-semibold">
           ¿Con hambre y sin tiempo?
         </h1>
-        <h1 className="text-3xl sm:text-[40px] xl:text-[60px] mt-2 md:mt-10 font-black text-white">
+        <h1 className="text-3xl sm:text-[40px] xl:text-[60px] mt-2 md:mt-10 font-black">
           ¡Conoce Salbox!
         </h1>
-        <p className="text-lg text-white_smoke mt-14 leading-8 mx-0 md:mx-20 lg:mx-0">
+        <p className="text-lg mt-14 leading-8 mx-0 md:mx-20 lg:mx-0">
           Comida fresca de calidad, precios justos y entrega sin costo de envío.
           ¿Qué más quieres?
         </p>
-        <p className="text-2xl font-bold text-white_smoke my-10 leading-8 mx-0 md:mx-20 lg:mx-0">
+        <p className="text-2xl font-bold my-10 leading-8 mx-0 md:mx-20 lg:mx-0">
           Deja tu whatsapp aquí
         </p>
 
@@ -84,7 +83,7 @@ const Hero = ({
       <div className="hidden lg:block mx-auto basis-1/2">
         <img src={HeroImage} alt="Hero Image" className="ml-auto w-[80%]" />
       </div>
-    </main>
+    </section>
   );
 };
 

@@ -1,17 +1,29 @@
 import { useState, useRef, useEffect } from "react";
-import { foodItems, FoodMenuType, foodMenuTypes, deliveryMenu, restaurantMenu, MenuCategory } from "../../data/foodMenuData";
-import MenuCatalogue from './MenuCatalogue';
-import CategoryMenu from './CategoryMenu';
-import MenuHeader from './MenuHeader';
+import {
+  foodItems,
+  FoodMenuType,
+  foodMenuTypes,
+  deliveryMenu,
+  restaurantMenu,
+  MenuCategory,
+} from "../../data/foodMenuData";
+import MenuCatalogue from "./MenuCatalogue";
+import CategoryMenu from "./CategoryMenu";
+import MenuHeader from "./MenuHeader";
 
 const Menu = () => {
-  const [menuType, setMenuType] = useState<FoodMenuType>(foodMenuTypes.delivery);
+  const [menuType, setMenuType] = useState<FoodMenuType>(
+    foodMenuTypes.delivery
+  );
   const [menuItems, setMenuItems] = useState<MenuCategory[] | null>(null);
-  const [selectedCategory, setSelectedCategory] = useState(deliveryMenu[0].title);
+  const [selectedCategory, setSelectedCategory] = useState(
+    deliveryMenu[0].title
+  );
   const sectionsRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    const selectedMenu = menuType === foodMenuTypes.delivery ? deliveryMenu : restaurantMenu;
+    const selectedMenu =
+      menuType === foodMenuTypes.delivery ? deliveryMenu : restaurantMenu;
     const items = getCategoryMenuItems(selectedMenu);
     setMenuItems(items);
 
@@ -21,7 +33,6 @@ const Menu = () => {
     }
   }, [menuType]);
 
-
   // Update the selected item based on scroll position
   useEffect(() => {
     if (!menuItems || menuItems.length === 0) return;
@@ -29,12 +40,12 @@ const Menu = () => {
     const observerOptions = {
       root: null, // use the browser viewport as root
       rootMargin: "-100px 0px 0px 0px", // offset to trigger earlier
-      threshold: 0.4 // 40% visible
+      threshold: 0.4, // 40% visible
     };
 
     const observer = new IntersectionObserver((entries) => {
       const visibleSections = entries
-        .filter(entry => entry.isIntersecting)
+        .filter((entry) => entry.isIntersecting)
         .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
 
       if (visibleSections.length > 0) {
@@ -42,7 +53,7 @@ const Menu = () => {
           (section) => section === visibleSections[0].target
         );
 
-        console.log(index)
+        console.log(index);
 
         if (index !== -1) {
           setSelectedCategory(menuItems[index].title);
@@ -62,8 +73,6 @@ const Menu = () => {
     };
   }, [menuItems]);
 
-
-
   // Scroll to the selected section when a category is clicked
   const handleCategoryClick = (title: string, index: number) => {
     setSelectedCategory(title);
@@ -71,33 +80,31 @@ const Menu = () => {
     const section = sectionsRefs.current[index];
     if (!section) return;
 
-    const offset = 120
-    const sectionPosition = section.getBoundingClientRect().top
+    const offset = 120;
+    const sectionPosition = section.getBoundingClientRect().top;
     const offsetPosition = sectionPosition + window.pageYOffset - offset;
 
     window.scrollTo({
       top: offsetPosition,
-      behavior: "smooth"
-    })
+      behavior: "smooth",
+    });
   };
 
   const getCategoryMenuItems = (menuData: MenuCategory[]) => {
-    const items = menuData.map(category => ({
+    const items = menuData.map((category) => ({
       ...category,
-      items: category.itemIds.map(id => (foodItems[id]))
-    }))
-    return items
-  }
+      items: category.itemIds.map((id) => foodItems[id]),
+    }));
+    return items;
+  };
 
   return (
-    <main id="menu" className="min-h-screen flex flex-col">
+    <main id="menu" className="scroll-mt-20 min-h-screen flex flex-col">
       {menuItems && menuItems.length > 0 && (
         <>
           {/* Header Section (sticky at the top) */}
           <section className="sticky top-0 z-10">
-            <MenuHeader
-              menuType={menuType}
-              setMenuType={setMenuType} />
+            <MenuHeader menuType={menuType} setMenuType={setMenuType} />
 
             {/* Category Menu */}
             <CategoryMenu

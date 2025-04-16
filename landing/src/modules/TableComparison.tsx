@@ -3,7 +3,7 @@ import { BackgroundBeams } from "../components/ui/background-beams";
 
 const TableComparison = () => {
   return (
-    <section className="relative bg-[#E7EAED] py-20 text-center antialiased overflow-hidden">
+    <section className="scroll-mt-20 relative bg-[#E7EAED] py-20 text-center antialiased overflow-hidden">
       <BackgroundBeams />
 
       {/* Main content */}
