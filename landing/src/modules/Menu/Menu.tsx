@@ -8,7 +8,7 @@ const Menu = () => {
   const [menuType, setMenuType] = useState<FoodMenuType>(foodMenuTypes.delivery);
   const [menuItems, setMenuItems] = useState<MenuCategory[] | null>(null);
   const [selectedCategory, setSelectedCategory] = useState(deliveryMenu[0].title);
-  const sectionsRefs = useRef([]);
+  const sectionsRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const selectedMenu = menuType === foodMenuTypes.delivery ? deliveryMenu : restaurantMenu;
