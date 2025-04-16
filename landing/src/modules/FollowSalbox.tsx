@@ -91,7 +91,7 @@ const FollowSalbox = () => {
   return (
     <div
       id="follow-salbox"
-      className="pt-6 md:py-14 md:pb-10 overflow-hidden relative bg-white bg-grid-small-black/[0.2]"
+      className="py-12 md:py-14 overflow-hidden relative bg-white bg-grid-small-black/[0.2]"
     >
       <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
       <h1 className="text-center text-[28px] md:text-[40px] font-bold px-6">
@@ -100,7 +100,7 @@ const FollowSalbox = () => {
       <p className="text-center mt-5 md:w-2/3 lg:w-1/2 mx-auto text-sm md:text-base leading-8 md:leading-[35px] mb-8 px-6">
         ¡Cada segundo nuestro mapa se actualiza! ¡Siguenos, paranos y pidenos!
       </p>
-      <div className="mx-auto px-20 h-[300px] lg:h-[75vh] mb-8 lg:mb-0 rounded-xl">
+      <div className="mx-auto px-8 md:px-20 h-[300px] lg:h-[75vh] mb-0 lg:mb-0 rounded-xl">
         <APIProvider apiKey={GOOGLE_MAPS_API_KEY}>{MemoizedMap()}</APIProvider>
       </div>
     </div>

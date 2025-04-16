@@ -3,7 +3,7 @@ import { BackgroundBeams } from "../components/ui/background-beams";
 
 const TableComparison = () => {
   return (
-    <section className="relative bg-[#E7EAED] mt-10 md:mt-20 lg:mt-24 py-20 text-center antialiased overflow-hidden">
+    <section className="relative bg-[#E7EAED] py-20 text-center antialiased overflow-hidden">
       <BackgroundBeams />
 
       {/* Main content */}
@@ -24,7 +24,7 @@ const TableComparison = () => {
           ¡Veenos, paranos y pidenos!
         </p>
         {/* Tables */}
-        <div className="px-20 mx-auto">
+        <div className="px-8 md:px-20 mx-auto">
           <MobileTable />
         </div>
       </div>

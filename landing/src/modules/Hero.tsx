@@ -1,8 +1,9 @@
 import { CheckCircle2 } from "lucide-react";
 import { Dispatch, useEffect, useState } from "react";
 import Confetti from "react-confetti";
-import RegisterForm from '../components/RegisterForm';
-import { Link } from 'react-router-dom';
+import RegisterForm from "../components/RegisterForm";
+
+import HeroImage from "../assets/images/HeroImage.png";
 
 /**
  * @typedef {Object} HeroProps
@@ -41,20 +42,20 @@ const Hero = ({
   }, [confetti]);
 
   return (
-    <main className="bg-moonstone-500 flex items-center px-6 lg:px-12 xl:px-20 min-h-[87vh]">
+    <main className="bg-moonstone-500 flex items-center px-6 lg:px-12 xl:px-20 xl:pr-0 min-h-[75vh]">
       {confetti && <Confetti />}
       <section className="flex flex-col items-center text-center lg:items-start lg:text-left lg:basis-1/2 m-0">
-        <h1 className="text-3xl sm:text-[40px] xl:text-[52px] leading-[70px] font-semibold text-white_smoke">
+        <h1 className="text-3xl sm:text-[40px] xl:text-[60px] leading-[70px] font-semibold text-white_smoke">
           ¿Con hambre y sin tiempo?
         </h1>
-        <h1 className="text-3xl sm:text-[40px] xl:text-[52px] mt-2 md:mt-6 font-black text-white">
+        <h1 className="text-3xl sm:text-[40px] xl:text-[60px] mt-2 md:mt-10 font-black text-white">
           ¡Conoce Salbox!
         </h1>
-        <p className="text-base text-white_smoke my-10 leading-8 mx-0 md:mx-20 lg:mx-0">
+        <p className="text-lg text-white_smoke mt-14 leading-8 mx-0 md:mx-20 lg:mx-0">
           Comida fresca de calidad, precios justos y entrega sin costo de envío.
           ¿Qué más quieres?
         </p>
-        <p className="text-base text-white_smoke my-10 leading-8 mx-0 md:mx-20 lg:mx-0">
+        <p className="text-2xl font-bold text-white_smoke my-10 leading-8 mx-0 md:mx-20 lg:mx-0">
           Deja tu whatsapp aquí
         </p>
 
@@ -79,29 +80,9 @@ const Hero = ({
             setConfetti={setConfetti}
           />
         )}
-
-        <div className="flex mt-32">
-          <Link to={"https://www.instagram.com/salbox.mx/"}
-            target='_blank'>
-            <img
-              className="w-16"
-              src="icons/IconInstagram.png"
-              alt="Instagram Icon"
-            /></Link>
-          <Link to={"https://www.facebook.com/salbox.mx"}
-            target='_blank'>
-            <img
-              className="w-16"
-              src="icons/IconFacebook.png"
-              alt="Facebook Icon"
-            /></Link>
-        </div>
       </section>
       <div className="hidden lg:block mx-auto basis-1/2">
-        <img
-          src="illustrations/HeroIllustration.svg"
-          alt="Hero Image"
-        />
+        <img src={HeroImage} alt="Hero Image" className="ml-auto w-[80%]" />
       </div>
     </main>
   );
