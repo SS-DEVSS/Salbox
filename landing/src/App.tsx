@@ -50,7 +50,7 @@ function App() {
         />
         <FollowSalbox />
         <TableComparison />
-        <Benefits />
+        {/* <Benefits /> */}
         <AboutUs />
         <Menu />
         <Promotions />
