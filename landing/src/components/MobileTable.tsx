@@ -17,42 +17,45 @@ const data = [
   {
     image: FastDelivery,
     title: "Velocidad de Entrega",
-    description: "Etiam non maximus ipsum, at ullamcorper nibh.",
-    salbox: "-30 min",
-    competencia1: "40+ min",
-    competencia2: "35+ min",
+    description:
+      "Entrega única con nuestro sistema automatico de entrega por rutas de envío on demand",
+    salbox: "En Ruta",
+    competencia1: "+ 30 min",
+    competencia2: "+ 45 min",
   },
   {
     image: FoodBalancedDiet,
-    title: "Variedad de Platillos",
-    description: "Etiam non maximus ipsum, at ullamcorper nibh.",
-    salbox: "check",
-    competencia1: "--",
-    competencia2: "--",
+    title: "Costo de los Platillos",
+    description: "Precios accesibles y justos siempre en Salbox",
+    salbox: "$120 por persona",
+    competencia1: "+$150 por persona",
+    competencia2: "+$150 por person",
   },
   {
     image: SavingsIcon,
-    title: "Costo",
-    description: "Etiam non maximus ipsum, at ullamcorper nibh.",
-    salbox: "$180 pp",
-    competencia1: "$280 pp",
-    competencia2: "$250 pp",
+    title: "Costo de Envio",
+    description: "Lo más rico, ¡Sin costo de envío!",
+    salbox: "Sin costo de Envío",
+    competencia1: "+$35",
+    competencia2: "+$40",
   },
   {
     image: PlanetEarthSustainability,
     title: "Sostenibilidad",
-    description: "Etiam non maximus ipsum, at ullamcorper nibh.",
-    salbox: "check",
-    competencia1: "close",
-    competencia2: "close",
+    description:
+      "Tus comidas, elaboradas y empacadas con contenedores 100% biodegradables.",
+    salbox: "100% Biodegradable",
+    competencia1: "PLA o Unicel",
+    competencia2: "PLA o Unicel",
   },
   {
     image: CustomerServiceIcon,
     title: "Atención al Cliente",
-    description: "Etiam non maximus ipsum, at ullamcorper nibh.",
-    salbox: "check",
-    competencia1: "close",
-    competencia2: "close",
+    description:
+      "Consideramos tanto el pedido como el tiempo de nuestros clientes para brindar el mejor servicio",
+    salbox: "100% personalizada",
+    competencia1: "Intermediarios",
+    competencia2: "Intermediarios",
   },
 ];
 
@@ -142,9 +145,9 @@ export default function MobileData() {
       <div>
         <Table>
           <TableHeader className="bg-moonstone-400">
-            <tr className="text-center">
+            <tr className="text-center text-white">
               <th className="py-4 px-8 text-left"></th>
-              <th className="py-4 px-8 bg-moonstone-400 text-white">Salbox</th>
+              <th className="py-4 px-8 bg-moonstone-400">Salbox</th>
               <th className="py-4 px-8">Competencia 1</th>
               <th className="py-4 px-8">Competencia 2</th>
             </tr>

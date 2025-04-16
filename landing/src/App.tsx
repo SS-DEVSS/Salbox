@@ -54,15 +54,15 @@ function App() {
         <AboutUs />
         <Menu />
         <Promotions />
-        <DeliveryTimeline />
-        <AppPromotion />
-        <Testimonials />
         <Register
           phoneNumber={phoneNumber}
           handlePhoneNumber={handlePhoneNumber}
           registered={registered}
           setRegistered={setRegistered}
         />
+        <DeliveryTimeline />
+        <AppPromotion />
+        <Testimonials />
         <ContactInfo />
         <Galeria />
         <Faq />

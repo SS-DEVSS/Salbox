@@ -13,9 +13,9 @@ const TableComparison = () => {
           vs el resto…
         </h4>
         <h2 className="text-[28px] md:text-[40px] font-bold my-5 px-6">
-          ¿Que es SalboxGo?
+          ¿Qué es SalboxGo?
         </h2>
-        <p className="md:w-2/3 lg:w-1/2 mx-auto text-sm md:text-base leading-8 md:leading-[35px] mb-8 md:mb-16 px-6">
+        <p className="md:w-2/3 lg:w-3/4 mx-auto text-sm md:text-base leading-8 md:leading-[35px] mb-8 md:mb-16 px-6">
           Nuestro sistema de rutas de entrega on demand SalboxGo va a donde tu
           estes. Ya sea en tu oficina, departamento, escuela, o donde quiera que
           estes, SalboxGo tendra una ruta para ti en donde te prepararemos al
@@ -24,7 +24,7 @@ const TableComparison = () => {
           ¡Veenos, paranos y pidenos!
         </p>
         {/* Tables */}
-        <div className="max-w-[1440px] px-10 mx-auto">
+        <div className="px-20 mx-auto">
           <MobileTable />
         </div>
       </div>

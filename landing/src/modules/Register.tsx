@@ -1,6 +1,6 @@
-import { Dispatch } from 'react';
+import { Dispatch } from "react";
 import RegisterImg from "../assets/images/RegisterImg.svg";
-import RegisterForm from '../components/RegisterForm';
+import RegisterForm from "../components/RegisterForm";
 
 type RegisterProps = {
   phoneNumber: string | null;
@@ -13,10 +13,13 @@ const Register = ({
   phoneNumber,
   handlePhoneNumber,
   registered,
-  setRegistered
+  setRegistered,
 }: RegisterProps) => {
   return (
-    <main id='registro' className="bg-moonstone-400 max-w-7xl m-4 mx-4 xl:mx-auto px-8 pt-10 lg:pt-4 text-center h-full lg:text-start rounded-xl flex flex-col lg:gap-10 items-center justify-center lg:flex-row-reverse lg:my-10 lg:pr-20">
+    <section
+      id="registro"
+      className="bg-moonstone-400 mx-20 px-8 pt-10 lg:pt-4 text-center h-full lg:text-start rounded-xl flex flex-col lg:gap-10 items-center justify-center lg:flex-row-reverse lg:my-10 lg:pr-20"
+    >
       {!registered ? (
         <section className="flex flex-col items-center lg:items-start">
           <h2 className="text-3xl lg:text-[40px] font-semibold text-white">
@@ -47,7 +50,7 @@ const Register = ({
         className="w-[300px] lg:w-[400px] mx-auto mt-auto"
         alt="Register Image"
       />
-    </main>
+    </section>
   );
 };
 
